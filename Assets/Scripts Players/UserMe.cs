@@ -7,7 +7,8 @@ using TMPro;
 public class LifeManager : MonoBehaviour
 {
     public int lifeNumber = 10;
-    public bool isDead = false;
+    private bool isDead = false;
+    public GameObject spawnLocations;
     GameObject player;
     public List<string> allTags = new List<string>();
     public TextMeshProUGUI displayLife;
@@ -40,7 +41,10 @@ public class LifeManager : MonoBehaviour
         if (lifeNumber == 0) { isDead = true; } else { isDead = false; }
         if (isDead)
         {
-            transform.position = new Vector3(2, 2, 2);
+            transform.position = spawnLocations.transform.position;
+            lifeNumber = 10;
+            displayLife.text = lifeNumber.ToString();
+            isDead = false;
         }
     }
 }
