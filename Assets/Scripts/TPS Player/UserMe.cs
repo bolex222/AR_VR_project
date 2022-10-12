@@ -23,7 +23,7 @@ public class UserMe : MonoBehaviour
         {
             if (bullet.tag == tag) //Il faut vérifier le layer
             {
-                print(bullet.transform.parent.gameObject.layer);
+                print(bullet.transform.parent.gameObject.layer) ;
                 if (bullet.transform.parent.gameObject.layer == 6)
                 {
                     lifeNumber = lifeNumber - 1;
