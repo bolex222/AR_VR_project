@@ -10,7 +10,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private float normalSensitivity;
     [SerializeField] private float aimSensitivity;
 
-    private ThirdPersonController thirdPersonController;
+    public ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
 
     private void Awake()
