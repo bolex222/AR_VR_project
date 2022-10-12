@@ -22,13 +22,13 @@ public class BulletProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<BulletTarget>() != null)
-        {
-            Debug.Log("Hit target");
-        } else
-        {
-            Debug.Log("Hit something else");
-        }
+        //if (other.GetComponent<BulletTarget>() != null)
+        //{
+        //    Debug.Log("Hit target");
+        //} else
+        //{
+        //    Debug.Log("Hit something else");
+        //}
         Destroy(gameObject);
     }
 }
