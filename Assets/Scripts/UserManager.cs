@@ -22,6 +22,8 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
     public GameObject CameraPlayer = null;
     public GameObject CameraFollow = null;
 
+    public Animator anims = null;
+
     public int Health = 3;
     
     private int previousHealth;
@@ -54,10 +56,15 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
         {
             Debug.LogFormat("Avatar UserMe created for userId {0}", photonView.ViewID);
             UserMeInstance = gameObject;
+
             
         }
+        else if (!photonView.IsMine)
+        {
+            anims.Play("");
+        }
         CameraPlayer.SetActive(photonView.IsMine);
-        UserMeInstance.GetComponent<ThirdPersonShooterController>().thirdPersonController.enabled = photonView.IsMine;
+        CameraFollow.SetActive(photonView.IsMine);
 
     }
 
@@ -112,7 +119,7 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
     {
         // enable the ThirdPersonUserControl if it is a Loacl player = UserMe
         // disable the ThirdPersonUserControl if it is not a Loacl player = UserOther
-        GetComponent<CharacterController>().enabled = photonView.IsMine;
+        //GetComponent<CharacterController>().enabled = photonView.IsMine;
         GetComponent<Rigidbody>().isKinematic = !photonView.IsMine;
         if (photonView.IsMine)
         {
