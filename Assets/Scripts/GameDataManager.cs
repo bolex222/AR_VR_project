@@ -47,7 +47,7 @@ public class GameDataManager : MonoBehaviour
             if (File.Exists(jsonPath))
             {
                 getData(jsonPath);
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("Lobby");
                 Debug.Log("Data loaded");
             }
         }

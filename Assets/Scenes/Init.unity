@@ -152,11 +152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591ddad3d92d1934fb920f33f08f04a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerText:
-    deliveringText: 
-    font:
-      size: 0
-      style: 
+  data:
+    LifeNumber: 0
+    DelayShot: 0
+    DelayTeleport: 0
+    ColorShotVirus: 
+    ColorShotKMS: 
+    NbContaminedPlayerToVictory: 0
+    RadiusExplosion: 0
+    TimeToAreaContamination: 0
 --- !u!4 &1406247120
 Transform:
   m_ObjectHideFlags: 0
