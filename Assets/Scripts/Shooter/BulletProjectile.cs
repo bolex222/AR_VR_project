@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BulletProjectile : MonoBehaviour
 {
-    //[SerializeField] private Transform vfxAnimatedHit3;
-    //[SerializeField] private Transform vfxAnimatedHit1;
+    [SerializeField] private float speedBullet;
 
     private Rigidbody bulletRigidbody;
 
@@ -16,19 +15,18 @@ public class BulletProjectile : MonoBehaviour
 
     private void Start()
     {
-        float speed = 40f;
-        bulletRigidbody.velocity = transform.forward * speed;
+        bulletRigidbody.velocity = transform.forward * speedBullet;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.GetComponent<BulletTarget>() != null)
-        //{
-        //    Debug.Log("Hit target");
-        //} else
-        //{
-        //    Debug.Log("Hit something else");
-        //}
+        /*if (other.GetComponent<BulletTarget>() != null)
+        {
+            Debug.Log("Hit target");
+        } else
+        {
+            Debug.Log("Hit something else");
+        }*/
         Destroy(gameObject);
     }
 }

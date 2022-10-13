@@ -173,5 +173,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f787aa624b637b94e975d9aa32663cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxAnimatedHit3: {fileID: 7370645196017963570, guid: c2cff1574636ce74c8a7c23cac481b3e, type: 3}
-  vfxAnimatedHit1: {fileID: 5205261426902322495, guid: cc279a9aa48ae8f44b4aff297cd200df, type: 3}
+  speedBullet: 40

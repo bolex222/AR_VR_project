@@ -60,8 +60,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if (starterAssetsInputs.fire && starterAssetsInputs.aim)
         {
-            Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            Vector3 aimRotateDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
             starterAssetsInputs.fire = false;
         }
     }
