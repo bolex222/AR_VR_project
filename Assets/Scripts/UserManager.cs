@@ -21,8 +21,7 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
     // /// </summary>
     public GameObject CameraPlayer = null;
     public GameObject CameraFollow = null;
-
-    public Animator anims = null;
+    public GameObject CameraAim = null;
 
     public int Health = 3;
     
@@ -55,16 +54,13 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
         if (photonView.IsMine)
         {
             Debug.LogFormat("Avatar UserMe created for userId {0}", photonView.ViewID);
-            UserMeInstance = gameObject;
-
-            
-        }
-        else if (!photonView.IsMine)
-        {
-            anims.Play("");
+            UserMeInstance = gameObject; 
         }
         CameraPlayer.SetActive(photonView.IsMine);
         CameraFollow.SetActive(photonView.IsMine);
+        CameraAim.SetActive(photonView.IsMine);
+
+
 
     }
 
