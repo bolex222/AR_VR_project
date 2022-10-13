@@ -107,6 +107,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private bool _rotateOnMove = true;
 
         private const float _threshold = 0.01f;
 
@@ -202,7 +203,7 @@ namespace StarterAssets
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * LookSensitivity;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * LookSensitivity;
+                _cinemachineTargetPitch += _input.look.y * -1 * deltaTimeMultiplier * LookSensitivity;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -264,7 +265,10 @@ namespace StarterAssets
                     RotationSmoothTime);
 
                 // rotate to face input direction relative to camera position
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                if (_rotateOnMove)
+                {
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                }
             }
 
 
@@ -395,6 +399,11 @@ namespace StarterAssets
         public void SetSensitivity(float newSensitivity)
         {
             LookSensitivity = newSensitivity;
+        }
+
+        public void SetRotateOnMove(bool newRotateOnMove)
+        {
+            _rotateOnMove = newRotateOnMove;
         }
     }
 }
