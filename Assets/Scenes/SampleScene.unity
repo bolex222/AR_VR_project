@@ -683,7 +683,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 4294967294
   m_SelectMode: 1
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefabPC: {fileID: 9169193173352982513, guid: 9b1b4942b46cb3f4c999f5eac386a994, type: 3}
-  playerPrefabVR: {fileID: 8365913290736088557, guid: 2c1b60419ab5c02448079855a371986d, type: 3}
+  playerPrefabVR: {fileID: 7775603790140945998, guid: 534e414db854e064a908211e97b0d81a, type: 3}
 --- !u!1 &1543381462
 GameObject:
   m_ObjectHideFlags: 0
