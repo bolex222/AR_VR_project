@@ -1940,7 +1940,7 @@ GameObject:
   - component: {fileID: 264433948887878491}
   - component: {fileID: -6088139115087464158}
   - component: {fileID: 9180031622628631448}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: PlayerArmature 3
   m_TagString: Player
   m_Icon: {fileID: 0}
