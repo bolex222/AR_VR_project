@@ -11,15 +11,18 @@ public class MultiplayerTeleportationArea : BaseTeleportationInteractable
     protected override bool GenerateTeleportRequest(IXRInteractor interactor, RaycastHit raycastHit, ref TeleportRequest teleportRequest)
     {
         
-        Debug.Log("");
-        
+        Debug.Log(teleportRequest);
+        Debug.Log(interactor);
+        Debug.Log(raycastHit);
+
         if (raycastHit.collider == null)
             return false;
 
+        teleportRequest.destinationPosition = raycastHit.point;
+        // teleportRequest.destinationRotation = transform.rotation;
+        
         return true;
         //
-        // teleportRequest.destinationPosition = raycastHit.point;
-        // teleportRequest.destinationRotation = transform.rotation;
         // return true;
     }
 }
