@@ -116,7 +116,7 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
         // enable the ThirdPersonUserControl if it is a Loacl player = UserMe
         // disable the ThirdPersonUserControl if it is not a Loacl player = UserOther
         //GetComponent<CharacterController>().enabled = photonView.IsMine;
-        GetComponent<Rigidbody>().isKinematic = !photonView.IsMine;
+        //GetComponent<Rigidbody>().isKinematic = !photonView.IsMine;
         if (photonView.IsMine)
         {
             try

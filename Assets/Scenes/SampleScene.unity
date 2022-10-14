@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 142801212}
   - component: {fileID: 142801211}
   - component: {fileID: 142801215}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 316357085}
   - component: {fileID: 316357084}
   - component: {fileID: 316357083}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 365493071}
   - component: {fileID: 365493070}
   - component: {fileID: 365493069}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 835551261}
   - component: {fileID: 835551260}
   - component: {fileID: 835551259}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,7 +995,7 @@ GameObject:
   - component: {fileID: 1128244620}
   - component: {fileID: 1128244619}
   - component: {fileID: 1128244618}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 1133344280}
   - component: {fileID: 1133344279}
   - component: {fileID: 1133344278}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1301986589}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Skybox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1254,7 +1254,7 @@ GameObject:
   - component: {fileID: 1447018043}
   - component: {fileID: 1447018042}
   - component: {fileID: 1447018041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1368,7 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4233eb9f4c4c61b418de808f1fceabb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefabPC: {fileID: 6773564741526326116, guid: 9f302eff298f00b4aa51f40b2090e0ff, type: 3}
+  playerPrefabPC: {fileID: 9169193173352982513, guid: 9b1b4942b46cb3f4c999f5eac386a994, type: 3}
   playerPrefabVR: {fileID: 0}
 --- !u!1 &1543381462
 GameObject:
@@ -1609,7 +1609,7 @@ GameObject:
   - component: {fileID: 1806326586}
   - component: {fileID: 1806326585}
   - component: {fileID: 1806326584}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
