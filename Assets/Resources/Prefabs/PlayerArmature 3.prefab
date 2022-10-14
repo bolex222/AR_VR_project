@@ -2206,7 +2206,7 @@ MonoBehaviour:
     m_Bits: 1
   pfBulletProjectile: {fileID: 4770247759774708549, guid: 7276d9dc3c729f64fa8e71be6b08877f, type: 3}
   spawnBulletPosition: {fileID: 7155265295523885202}
-  thirdPersonController: {fileID: 0}
+  thirdPersonController: {fileID: 6773564741526326127}
 --- !u!114 &5509695129777146481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2330,7 +2330,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6773564741526326116}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1
