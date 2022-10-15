@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -13,10 +14,9 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
     private List<PlayerMapAreas> playerMapAreasListTeamB;
 
     public enum State {Neutral, Captured};
-    private State state;
-
-    public enum CapturedBy {TeamA, TeamB};
-    private CapturedBy capturedBy;
+    public State state;
+    
+    public AllGenericTypes.Team capturedBy;
 
     private float progress;
     private float progress_A;
@@ -24,7 +24,6 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
 
     private bool isCapturing = false;
 
-    public Image progressImage;
     public TextMeshProUGUI battle;
 
     // Start is called before the first frame update
@@ -77,17 +76,18 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
                 if(playerMapAreasListTeamA.Count > 0)
                 {
                     float progressSpeed = 0.5f;
-                    progressImage.color = Color.red;
+                    UI.Instance.flagZoneCaptureProgressCanvas.color = Color.red;
                     
                     progress += playerMapAreasListTeamA.Count * progressSpeed * Time.deltaTime;
-                    progressImage.fillAmount = progress;
+                    UI.Instance.flagZoneCaptureProgressCanvas.fillAmount = progress;
 
 
                     if (progress >= 1f)
                     {
                         state = State.Captured;
+                        CaptureTheFlag.ChangeCaptureStatus.Invoke();
                         GetComponent<Renderer>().material.color = Color.red;
-                        capturedBy = CapturedBy.TeamA;
+                        capturedBy = AllGenericTypes.Team.TeamA;
                         
                     }
 
@@ -101,16 +101,17 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
                 else if(playerMapAreasListTeamB.Count > 0)
                 {
                     float progressSpeed = 0.5f;
-                    progressImage.color = Color.blue;
+                    UI.Instance.flagZoneCaptureProgressCanvas.color = Color.blue;
 
                     progress -= playerMapAreasListTeamB.Count * progressSpeed * Time.deltaTime;
-                    progressImage.fillAmount = -progress;
+                    UI.Instance.flagZoneCaptureProgressCanvas.fillAmount = -progress;
 
                     if (progress <= -1f)
                     {
                         state = State.Captured;
+                        CaptureTheFlag.ChangeCaptureStatus.Invoke();
                         GetComponent<Renderer>().material.color = Color.blue;
-                        capturedBy = CapturedBy.TeamB;
+                        capturedBy = AllGenericTypes.Team.TeamB;
 
                     }
 
@@ -145,7 +146,7 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
         {
             Debug.Log("entered zone: ");
             playerMapAreasList.Add(playerMapAreas);
-            progressImage.gameObject.SetActive(true);
+            UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(true);
         }
   
         isCapturing = true;
@@ -158,7 +159,7 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
             if(other.gameObject.GetPhotonView())
             Debug.Log("exit zone");
             playerMapAreasList.Remove(playerMapAreas);
-            progressImage.gameObject.SetActive(false);
+            UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(false);
         }
             
         isCapturing = false;
