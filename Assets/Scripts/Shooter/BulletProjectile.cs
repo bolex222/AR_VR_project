@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BulletProjectile : MonoBehaviour
 {
-    [SerializeField] private float speedBullet;
+    [SerializeField] private float bulletSpeed = 40f;
+    [SerializeField] private float bulletDamage = 1f;
 
     private Rigidbody bulletRigidbody;
 
@@ -15,18 +16,21 @@ public class BulletProjectile : MonoBehaviour
 
     private void Start()
     {
-        bulletRigidbody.velocity = transform.forward * speedBullet;
+        bulletRigidbody.velocity = transform.forward * bulletSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        /*if (other.GetComponent<BulletTarget>() != null)
-        {
-            Debug.Log("Hit target");
-        } else
-        {
-            Debug.Log("Hit something else");
-        }*/
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Health health = collision.transform.GetComponent<Health>();
+
+            health.TakeDamage(bulletDamage);
+        }
     }
 }
