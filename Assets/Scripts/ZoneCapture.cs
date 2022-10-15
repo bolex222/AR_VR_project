@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using Photon.Pun;
 
-public class ZoneCapture : MonoBehaviour
+
+public class ZoneCapture : MonoBehaviour, IPunObservable
 {
     private List<PlayerMapAreas> playerMapAreasList;
     private List<PlayerMapAreas> playerMapAreasListTeamA;
@@ -11,10 +15,17 @@ public class ZoneCapture : MonoBehaviour
     public enum State {Neutral, Captured};
     private State state;
 
+    public enum CapturedBy {TeamA, TeamB};
+    private CapturedBy capturedBy;
+
     private float progress;
     private float progress_A;
     private float progress_B;
+
     private bool isCapturing = false;
+
+    public Image progressImage;
+    public TextMeshProUGUI battle;
 
     // Start is called before the first frame update
     void Awake()
@@ -41,28 +52,23 @@ public class ZoneCapture : MonoBehaviour
                     if (!playerMapAreasList.Contains(playerMapAreas))
                     {
                         playerMapAreasList.Add(playerMapAreas);
-                        Debug.Log("Players inside: " + playerMapAreasList.Count);
 
                         if (playerMapAreas.gameObject.layer == LayerMask.NameToLayer("TeamA"))
                         {
                             playerMapAreasListTeamA.Add(playerMapAreas);
-                            Debug.Log("Players A inside: " + playerMapAreasListTeamA.Count);
 
                         }
                     }
                     else if (playerMapAreasList.Contains(playerMapAreas))
                     {
-                        Debug.Log("already contains");
                         if (playerMapAreas.gameObject.layer == LayerMask.NameToLayer("TeamA") && !playerMapAreasListTeamA.Contains(playerMapAreas))
                         {
                             playerMapAreasListTeamA.Add(playerMapAreas);
-                            Debug.Log("Players A inside: " + playerMapAreasListTeamA.Count);
 
                         }
                         else if (playerMapAreas.gameObject.layer == LayerMask.NameToLayer("TeamB") && !playerMapAreasListTeamB.Contains(playerMapAreas))
                         {
                             playerMapAreasListTeamB.Add(playerMapAreas);
-                            Debug.Log("Players B inside: " + playerMapAreasListTeamB.Count);
 
                         }
                     }
@@ -71,41 +77,52 @@ public class ZoneCapture : MonoBehaviour
                 if(playerMapAreasListTeamA.Count > 0)
                 {
                     float progressSpeed = 0.5f;
-                    progress_A += playerMapAreasListTeamA.Count * progressSpeed * Time.deltaTime;
+                    progressImage.color = Color.red;
+                    
+                    progress += playerMapAreasListTeamA.Count * progressSpeed * Time.deltaTime;
+                    progressImage.fillAmount = progress;
 
-                    Debug.Log("Inside zone: " + playerMapAreasListTeamA.Count + " ; progress A: " + progress_A);
 
-                    if (progress_A >= 1f)
+                    if (progress >= 1f)
                     {
                         state = State.Captured;
                         GetComponent<Renderer>().material.color = Color.red;
+                        capturedBy = CapturedBy.TeamA;
+                        
                     }
 
-                    if (progress_A >= 0 && playerMapAreasListTeamA.Count == 0)
+                    if (progress >= 0 && playerMapAreasListTeamA.Count == 0)
                     {
-                        progress_A -= progressSpeed * Time.deltaTime;
-                        Debug.Log("Leaved during progress, Player inside zone: " + playerMapAreasListTeamA.Count + " ; progress: " + progress_A);
+                        progress = 0;
+
                     }
                 }
 
                 else if(playerMapAreasListTeamB.Count > 0)
                 {
                     float progressSpeed = 0.5f;
-                    progress_B += playerMapAreasListTeamB.Count * progressSpeed * Time.deltaTime;
+                    progressImage.color = Color.blue;
 
-                    Debug.Log("Inside zone: " + playerMapAreasListTeamB.Count + " ; progress B: " + progress_B);
+                    progress -= playerMapAreasListTeamB.Count * progressSpeed * Time.deltaTime;
+                    progressImage.fillAmount = -progress;
 
-                    if (progress_B >= 1f)
+                    if (progress <= -1f)
                     {
                         state = State.Captured;
                         GetComponent<Renderer>().material.color = Color.blue;
+                        capturedBy = CapturedBy.TeamB;
+
                     }
 
-                    if (progress_B >= 0 && playerMapAreasListTeamB.Count == 0)
+                    if (progress >= 0 && playerMapAreasListTeamB.Count == 0)
                     {
-                        progress_B -= progressSpeed * Time.deltaTime;
-                        Debug.Log("Leaved during progress, Player inside zone: " + playerMapAreasListTeamB.Count + " ; progress: " + progress_B);
+                        progress = 0;
                     }
+                }
+
+                else if(playerMapAreasListTeamA.Count > 0 && playerMapAreasListTeamB.Count > 0)
+                {
+                    battle.gameObject.SetActive(true);
                 }
                 
                 
@@ -123,28 +140,47 @@ public class ZoneCapture : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<PlayerMapAreas>(out PlayerMapAreas playerMapAreas))
-        {
-            Debug.Log("entered zone: " + other.name);
-            playerMapAreasList.Add(playerMapAreas);
-        }
 
+        if (other.TryGetComponent<PlayerMapAreas>(out PlayerMapAreas playerMapAreas))
+        {
+            Debug.Log("entered zone: ");
+            playerMapAreasList.Add(playerMapAreas);
+            progressImage.gameObject.SetActive(true);
+        }
+  
         isCapturing = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<PlayerMapAreas>(out PlayerMapAreas playerMapAreas))
+        if(other.TryGetComponent<PlayerMapAreas>(out PlayerMapAreas playerMapAreas))
         {
+            if(other.gameObject.GetPhotonView())
             Debug.Log("exit zone");
             playerMapAreasList.Remove(playerMapAreas);
+            progressImage.gameObject.SetActive(false);
         }
-
+            
         isCapturing = false;
     }
 
     public List<PlayerMapAreas> GetPlayerMapAreas()
     {
         return playerMapAreasList;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(progress);
+            stream.SendNext(state);
+        }
+        else
+        {
+            progress = (int)stream.ReceiveNext();
+            state = (State)stream.ReceiveNext();
+
+        }
     }
 }

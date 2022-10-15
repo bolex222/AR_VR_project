@@ -80,7 +80,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         controlPanel.SetActive(true);
 
         isConnecting = false;
-        ipInputField.text = "10.169.129.241";
+        //ipInputField.text = "10.169.129.241";
+        ipInputField.text = "10.188.191.49";
         portInputField.text = "5055";
     }
 
