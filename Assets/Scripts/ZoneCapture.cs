@@ -85,10 +85,9 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
                     if (progress >= 1f)
                     {
                         state = State.Captured;
-                        CaptureTheFlag.ChangeCaptureStatus.Invoke();
                         GetComponent<Renderer>().material.color = Color.red;
                         capturedBy = AllGenericTypes.Team.TeamA;
-                        
+                        CaptureTheFlag.ChangeCaptureStatus.Invoke();
                     }
 
                     if (progress >= 0 && playerMapAreasListTeamA.Count == 0)
@@ -109,10 +108,9 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
                     if (progress <= -1f)
                     {
                         state = State.Captured;
-                        CaptureTheFlag.ChangeCaptureStatus.Invoke();
                         GetComponent<Renderer>().material.color = Color.blue;
                         capturedBy = AllGenericTypes.Team.TeamB;
-
+                        CaptureTheFlag.ChangeCaptureStatus.Invoke();
                     }
 
                     if (progress >= 0 && playerMapAreasListTeamB.Count == 0)
