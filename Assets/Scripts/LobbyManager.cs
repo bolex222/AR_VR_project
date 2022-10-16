@@ -198,7 +198,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
             // #Critical
             // Load the Room Level.
-            PhotonNetwork.LoadLevel("SampleScene");
+            PhotonNetwork.LoadLevel("map");
         }
     }
 
