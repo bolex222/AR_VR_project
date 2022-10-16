@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Interfaces;
 using UI_documents;
 using UnityEngine;
@@ -18,7 +16,7 @@ public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
 
     private List<Vector3> _capturePointsLocations;
     private List<ZoneCapture> _capturesZones;
-    
+
     private bool _timerOn;
     private float _timeLeft;
 
@@ -85,8 +83,8 @@ public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
                 }
             }
         }
+
         captureTheFlagScoreUIManager.UpdateScore(_scoreTeamA, _scoreTeamB, _capturesZones.Count);
-        Debug.Log($"Team A: {_scoreTeamA} / {_capturesZones.Count} || Team B: {_scoreTeamB} / {_capturesZones.Count}");
         if (_scoreTeamA == _capturesZones.Count)
         {
             GameOver(AllGenericTypes.Team.TeamA);
