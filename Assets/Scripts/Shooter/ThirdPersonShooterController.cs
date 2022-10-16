@@ -18,6 +18,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
 
+    private float gunHeat;
+
     private void Awake()
     {
         thirdPersonController = GetComponent<ThirdPersonController>();
@@ -27,6 +29,11 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private void Update()
     {
+        if (gunHeat > 0)
+        {
+            gunHeat -= Time.deltaTime;
+        }
+
         Vector3 mouseWorldPosition = Vector3.zero;
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
@@ -59,7 +66,11 @@ public class ThirdPersonShooterController : MonoBehaviour
         if (starterAssetsInputs.fire && starterAssetsInputs.aim)
         {
             Vector3 aimRotateDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
+            if (gunHeat <= 0)
+            {
+                gunHeat = 1.5f;  // this is the interval between firing.
+                Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
+            }
             starterAssetsInputs.fire = false;
         }
     }

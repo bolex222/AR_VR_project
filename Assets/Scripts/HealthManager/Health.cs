@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float maxHealth = 10f;
-    public float currentHealth;
+    public float currentHealth = 10f;
 
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
