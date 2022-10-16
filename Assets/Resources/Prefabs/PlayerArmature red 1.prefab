@@ -1938,7 +1938,7 @@ GameObject:
   - component: {fileID: 346319485763183442}
   - component: {fileID: 9075488316341796536}
   - component: {fileID: -6088139115087464158}
-  - component: {fileID: 9180031622628631448}
+  - component: {fileID: -81496867632464661}
   m_Layer: 0
   m_Name: PlayerArmature red 1
   m_TagString: Player
@@ -2320,18 +2320,19 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9180031622628631448
+--- !u!114 &-81496867632464661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6773564741526326116}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a4fc16fe26f7b47a7a1954986fa2b1, type: 3}
+  m_Script: {fileID: 11500000, guid: c5dd27722893321479e235fe723053e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 0
 --- !u!1 &6849052827262947767
 GameObject:
   m_ObjectHideFlags: 0

@@ -519,7 +519,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052873970}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &142801215
 MonoBehaviour:
@@ -562,7 +562,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052873970}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &227440124
 GameObject:
@@ -691,7 +691,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052873970}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &327528480
 GameObject:
@@ -753,7 +753,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &365493068
 GameObject:
@@ -840,7 +840,7 @@ Transform:
   m_Children:
   - {fileID: 1796485146}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &460731410
 MonoBehaviour:
@@ -854,7 +854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d8c9ef6522ea544957163da1af15ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flagZoneCaptureProgressCanvas: {fileID: 0}
+  flagZoneCaptureProgressCanvas: {fileID: 2068273411}
+  battleText: {fileID: 50064455}
 --- !u!1 &472030586
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +999,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052873970}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &695631110
 GameObject:
@@ -1349,7 +1350,7 @@ Transform:
   - {fileID: 472030587}
   - {fileID: 730247791}
   m_Father: {fileID: 1052873970}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &880966819
 MonoBehaviour:
@@ -1418,10 +1419,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMode: 1
-  TeamAPlayerPrefabPC: {fileID: 6773564741526326116, guid: 0e755e90cfd439f4fa1be7d6df8efa2f, type: 3}
-  TeamBPlayerPrefabPC: {fileID: 6773564741526326116, guid: a266d3b5711524649b029d2977d680b4, type: 3}
-  TeamAPlayerPrefabVR: {fileID: 0}
-  TeamBPlayerPrefabVR: {fileID: 0}
+  teamAPlayerPrefabPC: {fileID: 6773564741526326116, guid: 0e755e90cfd439f4fa1be7d6df8efa2f, type: 3}
+  teamBPlayerPrefabPC: {fileID: 6773564741526326116, guid: a266d3b5711524649b029d2977d680b4, type: 3}
+  teamAPlayerPrefabVR: {fileID: 0}
+  teamBPlayerPrefabVR: {fileID: 0}
 --- !u!4 &1048835799
 Transform:
   m_ObjectHideFlags: 0
@@ -1435,7 +1436,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1052543746
 GameObject:
@@ -1586,14 +1587,13 @@ Transform:
   - {fileID: 1742124240}
   - {fileID: 1052543751}
   - {fileID: 646423854}
-  - {fileID: 1098094796}
   - {fileID: 142801214}
   - {fileID: 695484824}
   - {fileID: 165466962}
   - {fileID: 316357086}
   - {fileID: 880966818}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098094792
 GameObject:
@@ -1689,8 +1689,8 @@ RectTransform:
   m_Children:
   - {fileID: 1116727433}
   - {fileID: 1152019244}
-  m_Father: {fileID: 1052873970}
-  m_RootOrder: 7
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

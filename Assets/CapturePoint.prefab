@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  progressSpeed: 0.5
+  capturedBy: 3
   battle: {fileID: 0}
 --- !u!114 &7015694500367037999
 MonoBehaviour:
