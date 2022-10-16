@@ -2,21 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Interfaces;
+using UI_documents;
 using UnityEngine;
 using UnityEngine.Events;
 
 
 public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
 {
-    [SerializeField] private GameObject capturePointsContainer;
-    [SerializeField] private GameObject prefabZoneCapture;
-    [SerializeField] private float timerDuration;
+    [SerializeField] public GameObject capturePointsContainer;
+    [SerializeField] public GameObject prefabZoneCapture;
+    [SerializeField] public float timerDuration;
+    [SerializeField] public CaptureTheFlagScoreUIManager captureTheFlagScoreUIManager;
 
     public static UnityEvent ChangeCaptureStatus;
 
     private List<Vector3> _capturePointsLocations;
     private List<ZoneCapture> _capturesZones;
-
+    
     private bool _timerOn;
     private float _timeLeft;
 
@@ -83,7 +85,7 @@ public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
                 }
             }
         }
-
+        captureTheFlagScoreUIManager.UpdateScore(_scoreTeamA, _scoreTeamB, _capturesZones.Count);
         Debug.Log($"Team A: {_scoreTeamA} / {_capturesZones.Count} || Team B: {_scoreTeamB} / {_capturesZones.Count}");
         if (_scoreTeamA == _capturesZones.Count)
         {
@@ -121,6 +123,7 @@ public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
     {
         _capturePointsLocations.Add(new Vector3(-10, 0, 0));
         _capturePointsLocations.Add(new Vector3(10, 0, 0));
+        captureTheFlagScoreUIManager.gameObject.SetActive(true);
         foreach (Vector3 capturePointLocation in _capturePointsLocations)
         {
             GameObject tempPrefabZoneCapture =

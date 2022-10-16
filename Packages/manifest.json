@@ -13,6 +13,8 @@
     "com.unity.timeline": "1.6.4",
     "com.unity.toolchain.win-x86_64-linux-x86_64": "2.0.2",
     "com.unity.ugui": "1.0.0",
+    "com.unity.ui": "2.0.0",
+    "com.unity.ui.builder": "2.0.0",
     "com.unity.visualscripting": "1.7.8",
     "com.unity.xr.arfoundation": "4.2.6",
     "com.unity.xr.openxr": "1.4.2",
