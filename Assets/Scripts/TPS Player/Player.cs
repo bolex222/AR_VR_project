@@ -34,7 +34,8 @@ namespace TPS_Player
 
         void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            //TODO check cursor du cul
+            // Cursor.lockState = CursorLockMode.Locked;
         }
 
 
