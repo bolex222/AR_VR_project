@@ -6,7 +6,7 @@ using TMPro;
 using Photon.Pun;
 
 
-public class ZoneCapture : MonoBehaviour, IPunObservable
+public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
 {
     private List<PlayerMapAreas> playerMapAreasList;
     private List<PlayerMapAreas> playerMapAreasListTeamA;
@@ -27,6 +27,8 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
     public Image progressImage;
     public TextMeshProUGUI battle;
 
+    public string MyString = string.Empty;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -39,17 +41,15 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-
+        
         switch (state)
         {
             case State.Neutral:
 
-                //List<PlayerMapAreas> playerMapAreasInsideList = new List<PlayerMapAreas>();
-
                 foreach (PlayerMapAreas playerMapAreas in GetPlayerMapAreas())
                 {
                     
-                    if (!playerMapAreasList.Contains(playerMapAreas))
+                    if (!playerMapAreasList.Contains(playerMapAreas) && playerMapAreas.gameObject.GetPhotonView().IsMine == true)
                     {
                         playerMapAreasList.Add(playerMapAreas);
 
@@ -59,7 +59,7 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
 
                         }
                     }
-                    else if (playerMapAreasList.Contains(playerMapAreas))
+                    else if (playerMapAreasList.Contains(playerMapAreas) && playerMapAreas.gameObject.GetPhotonView().IsMine == true)
                     {
                         if (playerMapAreas.gameObject.layer == LayerMask.NameToLayer("TeamA") && !playerMapAreasListTeamA.Contains(playerMapAreas))
                         {
@@ -76,30 +76,14 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
 
                 if(playerMapAreasListTeamA.Count > 0)
                 {
-                    float progressSpeed = 0.5f;
-                    progressImage.color = Color.red;
-                    
-                    progress += playerMapAreasListTeamA.Count * progressSpeed * Time.deltaTime;
-                    progressImage.fillAmount = progress;
-
-
-                    if (progress >= 1f)
-                    {
-                        state = State.Captured;
-                        GetComponent<Renderer>().material.color = Color.red;
-                        capturedBy = CapturedBy.TeamA;
-                        
-                    }
-
-                    if (progress >= 0 && playerMapAreasListTeamA.Count == 0)
-                    {
-                        progress = 0;
-
-                    }
+                    CaptureProgress(0.5f, progress, 1f, playerMapAreasListTeamA, Color.red, progressImage, 1);
                 }
 
                 else if(playerMapAreasListTeamB.Count > 0)
                 {
+
+                    photonView.RPC("CaptureProgress", RpcTarget.AllViaServer, 0.5f, progress, 1f, playerMapAreasListTeamB, Color.blue, progressImage, 2);
+
                     float progressSpeed = 0.5f;
                     progressImage.color = Color.blue;
 
@@ -130,12 +114,6 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
             case State.Captured:
                 break;
         }
-
-
-        //int playersCountInside = 0;
-        //playersCountInside += GetPlayerMapAreas().Count;
-
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -143,9 +121,12 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
 
         if (other.TryGetComponent<PlayerMapAreas>(out PlayerMapAreas playerMapAreas))
         {
-            Debug.Log("entered zone: ");
-            playerMapAreasList.Add(playerMapAreas);
-            progressImage.gameObject.SetActive(true);
+            if (other.gameObject.GetPhotonView().IsMine == true)
+            {
+                Debug.Log("entered zone: " + other.gameObject.GetPhotonView().ViewID );
+                playerMapAreasList.Add(playerMapAreas);
+                progressImage.gameObject.SetActive(true);
+            }
         }
   
         isCapturing = true;
@@ -155,10 +136,12 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
     {
         if(other.TryGetComponent<PlayerMapAreas>(out PlayerMapAreas playerMapAreas))
         {
-            if(other.gameObject.GetPhotonView())
-            Debug.Log("exit zone");
-            playerMapAreasList.Remove(playerMapAreas);
-            progressImage.gameObject.SetActive(false);
+            if (other.gameObject.GetPhotonView().IsMine == true)
+            {
+                Debug.Log("exited zone: " + other.gameObject.GetPhotonView().ViewID);
+                playerMapAreasList.Remove(playerMapAreas);
+                progressImage.gameObject.SetActive(false);
+            }
         }
             
         isCapturing = false;
@@ -174,13 +157,44 @@ public class ZoneCapture : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(progress);
-            stream.SendNext(state);
+            stream.SendNext(GetPlayerMapAreas());
+            stream.SendNext(GetComponent<Renderer>().material.color);
         }
         else
         {
             progress = (int)stream.ReceiveNext();
-            state = (State)stream.ReceiveNext();
+            playerMapAreasList = (List<PlayerMapAreas>)stream.ReceiveNext();
+            GetComponent<Renderer>().material.color = (Color)stream.ReceiveNext();
+        }
+    }
 
+    [PunRPC]
+    public void CaptureProgress(float progressCoef, float progressValue, float captureCondition, List<PlayerMapAreas> teamList, Color teamColor, Image progressUI, int teamNumber)
+    {
+        progressUI.color = teamColor;
+
+        if(teamNumber == 1)
+        {
+            progressValue += teamList.Count * progressCoef * Time.deltaTime;
+        }
+        else if(teamNumber == 2)
+        {
+            progressValue -= teamList.Count * progressCoef * Time.deltaTime;
+
+        }
+
+        progressImage.fillAmount = progress;
+
+
+        if (progressImage.fillAmount == captureCondition)
+        {
+            state = State.Captured;
+            GetComponent<Renderer>().material.color = teamColor;
+        }
+
+        if (progressValue > 0 && teamList.Count == 0)
+        {
+            progressValue = 0;
         }
     }
 }

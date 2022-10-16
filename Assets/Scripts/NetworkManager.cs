@@ -1,17 +1,23 @@
 using UnityEngine;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
-public class NetworkManager : MonoBehaviourPunCallbacks
+public class NetworkManager : MonoBehaviourPunCallbacks, IMatchmakingCallbacks, IInRoomCallbacks
 {
     public static NetworkManager Instance;
 
-    [Tooltip("The prefab to use for representing the user on a PC. Must be in Resources folder")]
+    public static List<Player> playersTeamA = new List<Player>();
+    public static List<Player> playersTeamB = new List<Player>();
+
+
+    /*[Tooltip("The prefab to use for representing the user on a PC. Must be in Resources folder")]
     public GameObject playerPrefabPC;
 
     [Tooltip("The prefab to use for representing the user in VR. Must be in Resources folder")]
-    public GameObject playerPrefabVR;
+    public GameObject playerPrefabVR;*/
 
     #region Photon Callbacks
 
@@ -68,12 +74,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Instance = this;
 
-        #region TO debug
-
-        Debug.Log("device:" + UserDeviceManager.GetDeviceUsed());
+        /*Debug.Log("device:" + UserDeviceManager.GetDeviceUsed());
         Debug.Log("prefab:" + UserDeviceManager.GetPrefabToSpawnWithDeviceUsed(playerPrefabPC, playerPrefabVR));
-
-        #endregion
 
         GameObject playerPrefab = UserDeviceManager.GetPrefabToSpawnWithDeviceUsed(playerPrefabPC, playerPrefabVR);
         if (playerPrefab == null)
@@ -98,7 +100,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             {
                 Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
             }
-        }
+        }*/
     }
 
     private void Update()
@@ -112,6 +114,26 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 LeaveRoom();
             }
         }
+    }
+
+    public void JoinTeam(int teamCode)
+    {
+
+
+        if (teamCode == 0 && !playersTeamA.Contains(PhotonNetwork.LocalPlayer))
+        {
+            playersTeamA.Add(PhotonNetwork.LocalPlayer);
+            Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in A");
+            SceneManager.LoadScene("SampleScene");
+        } 
+        else if(teamCode == 1 && !playersTeamB.Contains(PhotonNetwork.LocalPlayer))
+        {
+            playersTeamB.Add(PhotonNetwork.LocalPlayer);
+            Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in B");
+            SceneManager.LoadScene("SampleScene");
+        }
+
+        
     }
 
     #endregion
