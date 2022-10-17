@@ -151,7 +151,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
     {
         Debug.Log("game start");
         //TODO
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("map");
     }
 
     #endregion

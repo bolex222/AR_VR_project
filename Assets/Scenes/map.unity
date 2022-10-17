@@ -1122,8 +1122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMode: 1
-  teamAPlayerPrefabPC: {fileID: 6773564741526326116, guid: 0e755e90cfd439f4fa1be7d6df8efa2f, type: 3}
-  teamBPlayerPrefabPC: {fileID: 6773564741526326116, guid: a266d3b5711524649b029d2977d680b4, type: 3}
+  teamAPlayerPrefabPC: {fileID: 7191049770193287456, guid: d7a40da42cbdf9543abfa89f885f7e73, type: 3}
+  teamBPlayerPrefabPC: {fileID: 7191049770193287456, guid: 1a6f1bb768aa8f4428902f057829ba4f, type: 3}
   teamAPlayerPrefabVR: {fileID: 0}
   teamBPlayerPrefabVR: {fileID: 0}
 --- !u!4 &1692207207
