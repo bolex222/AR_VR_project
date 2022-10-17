@@ -20,7 +20,7 @@ MonoBehaviour:
     AppVersion: 
     UseNameServer: 0
     FixedRegion: 
-    Server: 10.169.129.241
+    Server: 10.188.191.49
     Port: 5055
     ProxyServer: 
     Protocol: 0
@@ -41,6 +41,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - ThrowBall
   - FireBullet
+  - CaptureProgress
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

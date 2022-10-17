@@ -1965,6 +1965,7 @@ GameObject:
   - component: {fileID: 4108808058161467670}
   - component: {fileID: 4627914939867942140}
   - component: {fileID: 7206413697948588997}
+  - component: {fileID: -2428000461891174966}
   m_Layer: 0
   m_Name: PlayerArmature 3
   m_TagString: Player
@@ -2351,6 +2352,19 @@ MonoBehaviour:
   player: {fileID: 7530138449772684186}
   respawnPoint: {fileID: 0}
   healthBar: {fileID: 2628232530558247177}
+--- !u!114 &-2428000461891174966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191049770193287456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5dd27722893321479e235fe723053e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 1
 --- !u!1 &7230746166357667230
 GameObject:
   m_ObjectHideFlags: 0
