@@ -45,7 +45,8 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
     [Range(0.2f, 100.0f)] public float MinSpeed;
     [Range(0.2f, 100.0f)] public float MaxSpeed;
     [Range(0.2f, 100.0f)] public float MaxSpeedForPressDuration;
-    private float pressDuration = 0;
+
+    // private float pressDuration = 0;
 
     #endregion
 

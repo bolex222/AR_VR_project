@@ -29,7 +29,7 @@ public class PhotonTransformChildView : MonoBehaviourPunCallbacks, IPunObservabl
 
     }
 
-    [SerializeField] private float ratio = 0.8f;
+    // [SerializeField] private float ratio = 0.8f;
     #region IPUnObservable
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

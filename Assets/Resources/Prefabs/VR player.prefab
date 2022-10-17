@@ -2150,7 +2150,6 @@ MonoBehaviour:
   SynchronizedChildTransform:
   - {fileID: 7775603789880363497}
   - {fileID: 7775603790113009169}
-  ratio: 0.8
 --- !u!114 &2774374651374144920
 MonoBehaviour:
   m_ObjectHideFlags: 0

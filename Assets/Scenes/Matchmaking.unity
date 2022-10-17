@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -209,8 +209,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 68694366}
-        m_TargetAssemblyTypeName: test, Assembly-CSharp
-        m_MethodName: OnClickTest
+        m_TargetAssemblyTypeName: UI_documents.VRTeamSelectionUI, Assembly-CSharp
+        m_MethodName: OnSelectTeamA
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -267,9 +267,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 68694361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94616b6336ff08043b1d15377f03f637, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b62bc6ee9a29b54289959390e822a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matchMakingUi: {fileID: 115769184}
 --- !u!1 &115769182
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 115769183}
+  - component: {fileID: 115769184}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -303,8 +305,25 @@ Transform:
   - {fileID: 554167352}
   - {fileID: 239532380}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &115769184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115769182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c16e316960d2f042bccf9367e9754de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrTeamSelectionCanvas: {fileID: 554167355}
+  vrStartGameCanvas: {fileID: 239532383}
+  pcTeamSelection: {fileID: 1760786045}
+  pcStartGame: {fileID: 1369364463}
+  matchMakingNetworkManager: {fileID: 1747575829}
 --- !u!1 &153410210
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +336,7 @@ GameObject:
   - component: {fileID: 153410214}
   - component: {fileID: 153410213}
   - component: {fileID: 153410212}
+  - component: {fileID: 153410215}
   m_Layer: 5
   m_Name: Team B Button
   m_TagString: Untagged
@@ -388,7 +408,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 153410213}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 153410215}
+        m_TargetAssemblyTypeName: UI_documents.VRTeamSelectionUI, Assembly-CSharp
+        m_MethodName: OnSelectTeamB
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &153410213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +459,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153410210}
   m_CullTransparentMesh: 1
+--- !u!114 &153410215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153410210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b62bc6ee9a29b54289959390e822a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matchMakingUi: {fileID: 115769184}
 --- !u!1 &239532379
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +484,8 @@ GameObject:
   - component: {fileID: 239532383}
   - component: {fileID: 239532382}
   - component: {fileID: 239532381}
+  - component: {fileID: 239532385}
+  - component: {fileID: 239532384}
   m_Layer: 5
   m_Name: StartGameVRCanvas
   m_TagString: Untagged
@@ -528,6 +575,38 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &239532384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239532379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b427347f398138b43b6abed1604d7b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matchMakingUi: {fileID: 115769184}
+--- !u!114 &239532385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239532379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &277260186
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,7 +993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &554167352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1114,7 +1193,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &565584752
 MonoBehaviour:
@@ -1247,7 +1326,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &935287112
 MonoBehaviour:
@@ -1504,7 +1583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 1369364463}
-  matchmakingNetworkManager: {fileID: 1747575829}
+  matchMakingUi: {fileID: 115769184}
 --- !u!1 &1679637935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,7 +1676,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1747575827
 GameObject:
@@ -1629,7 +1708,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1747575829
 MonoBehaviour:
@@ -1708,7 +1787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 1760786045}
-  matchmakingNetworkManager: {fileID: 1747575829}
+  matchMakingUi: {fileID: 115769184}
 --- !u!1 &1874474654
 GameObject:
   m_ObjectHideFlags: 0
