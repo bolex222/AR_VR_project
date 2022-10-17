@@ -5,16 +5,22 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
+  - Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Skybox
   - Water
   - UI
   - Capture
   - TeamA
   - TeamB
+  - Teleport
+  - Hands
+  - HitTarget
+  - Ground
+  - 
   - 
   - 
   - 

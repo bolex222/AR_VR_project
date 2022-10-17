@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 2119621104881329988}
   - component: {fileID: 3160192049503003282}
   - component: {fileID: -8427853558775021612}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: PlayerArmature
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1087,6 +1087,7 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   aim: 0
+  fire: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -1203,6 +1204,12 @@ MonoBehaviour:
   aimVirtualCamera: {fileID: 0}
   normalSensitivity: 1
   aimSensitivity: 0.5
+  aimColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  pfBulletProjectile: {fileID: 0}
+  spawnBulletPosition: {fileID: 0}
+  thirdPersonController: {fileID: 0}
 --- !u!114 &4974235969648106193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,6 +1298,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerLocalMat: {fileID: 0}
   CameraPlayer: {fileID: 8944336655422409498, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
+  CameraFollow: {fileID: 0}
+  CameraAim: {fileID: 0}
   Health: 3
   snowballSpawner: {fileID: 0}
   SnowballPrefab: {fileID: 0}
