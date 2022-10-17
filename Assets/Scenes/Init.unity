@@ -156,6 +156,7 @@ MonoBehaviour:
     LifeNumber: 0
     DelayShot: 0
     DelayTeleport: 0
+    DelayRespawn: 0
     ColorShotVirus: 
     ColorShotKMS: 
     NbContaminedPlayerToVictory: 0
