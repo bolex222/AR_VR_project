@@ -13,6 +13,9 @@ TagManager:
   - Skybox
   - Water
   - UI
+  - Capture
+  - TeamA
+  - TeamB
   - Teleport
   - Hands
   - HitTarget

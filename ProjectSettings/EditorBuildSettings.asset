@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 268d251b69ce1a94592e758362e3d9e8
   - enabled: 1
+    path: Assets/Scenes/map.unity
+    guid: 8f51c15153991fc4887e1ced76cb79ed
+  - enabled: 1
+    path: Assets/Scenes/Matchmaking.unity
+    guid: 6e529c53792acfa48a5c435a23318c64
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:

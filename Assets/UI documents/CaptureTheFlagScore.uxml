@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="score_container" style="flex-direction: row;">
+        <ui:Label text="TEAM A" display-tooltip-when-elided="true" style="width: auto; font-size: 40%; -unity-font: url(&apos;project://database/Assets/UI%20documents/fonts/LuckiestGuy-Regular.ttf?fileID=12800000&amp;guid=484fc00b63888e549a3756d3a7eecaf8&amp;type=3#LuckiestGuy-Regular&apos;); color: rgb(229, 229, 229);" />
+        <ui:VisualElement name="range_container" style="width: 100%; flex-direction: row;">
+            <ui:VisualElement name="team_A_score_container" style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); width: 100%; flex-direction: row; border-top-left-radius: 5%; border-bottom-left-radius: 5%; border-top-right-radius: 5%; border-bottom-right-radius: 5%; padding-left: 5%; padding-right: 5%; padding-top: 15px; padding-bottom: 15px;">
+                <ui:VisualElement name="team-a-score" style="flex-direction: row; width: 0; background-color: rgba(168, 55, 55, 0.87); transition-duration: 0.3s; transition-timing-function: ease-out; transition-property: width; border-top-left-radius: 5%; border-bottom-left-radius: 5%; border-top-right-radius: 5%; border-bottom-right-radius: 5%;" />
+            </ui:VisualElement>
+            <ui:Label text="0 | 0" display-tooltip-when-elided="true" name="full-score" style="font-size: 40%; color: rgba(226, 226, 226, 255); -unity-text-outline-color: rgba(255, 255, 255, 0);" />
+            <ui:VisualElement name="team_B_score_container" style="background-color: rgba(0, 0, 0, 0); width: 100%; position: relative; left: auto; flex-direction: row-reverse; border-top-left-radius: 5%; border-bottom-left-radius: 5%; border-top-right-radius: 5%; border-bottom-right-radius: 5%; padding-left: 5%; padding-right: 5%; padding-top: 15px; padding-bottom: 15px;">
+                <ui:VisualElement name="team-b-score" style="background-color: rgba(63, 55, 169, 0.81); width: 0; flex-direction: row-reverse; transition-property: width; transition-duration: 0.3s; transition-timing-function: ease-out; border-top-left-radius: 5%; border-bottom-left-radius: 5%; border-top-right-radius: 5%; border-bottom-right-radius: 5%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label text="TEAM B" display-tooltip-when-elided="true" style="width: auto; font-size: 40%; -unity-font: url(&apos;project://database/Assets/UI%20documents/fonts/LuckiestGuy-Regular.ttf?fileID=12800000&amp;guid=484fc00b63888e549a3756d3a7eecaf8&amp;type=3#LuckiestGuy-Regular&apos;); color: rgb(229, 229, 229);" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="align-items: center;">
+        <ui:Button text="TeamA" display-tooltip-when-elided="true" name="team-a-button" style="background-color: rgb(210, 28, 28);" />
+        <ui:Button text="TeamB" display-tooltip-when-elided="true" name="team-b-button" style="background-color: rgb(46, 70, 209);" />
+    </ui:VisualElement>
+</ui:UXML>

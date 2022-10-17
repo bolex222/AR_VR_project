@@ -60,6 +60,8 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
         CameraFollow.SetActive(photonView.IsMine);
         CameraAim.SetActive(photonView.IsMine);
 
+        //DontDestroyOnLoad(gameObject);
+
 
 
     }
@@ -73,43 +75,6 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
         activateLocalPlayer();
         UpdateHealthMaterial();
     }
-
-    /// <summary>
-    /// Get the GameObject of the CameraRig
-    /// </summary>
-    // protected void updateGoFreeLookCameraRig()
-    // {
-    //     if (!photonView.IsMine) return;
-    //     try
-    //     {
-    //         // Get the Camera to set as the followed camera
-    //         //goFreeLookCameraRig = transform.Find("/FreeLookCameraRig").gameObject;
-    //     }
-    //     catch (System.Exception ex)
-    //     {
-    //         Debug.LogWarning("Warning, no goFreeLookCameraRig found\n" + ex);
-    //     }
-    // }
-
-    /// <summary>
-    /// Make the CameraRig following the LocalPlayer only.
-    /// </summary>
-    // protected void followLocalPlayer()
-    // {
-    //     if (photonView.IsMine)
-    //     {
-    //         if (goFreeLookCameraRig != null)
-    //         {
-    //             // find Avatar EthanHips
-    //             Transform transformFollow = transform.Find("EthanSkeleton/EthanHips") != null
-    //                 ? transform.Find("EthanSkeleton/EthanHips")
-    //                 : transform;
-    //             // call the SetTarget on the FreeLookCam attached to the FreeLookCameraRig
-    //             goFreeLookCameraRig.GetComponent<FreeLookCam>().SetTarget(transformFollow);
-    //             Debug.Log("ThirdPersonControllerMultiuser follow:" + transformFollow);
-    //         }
-    //     }
-    // }
 
     protected void activateLocalPlayer()
     {
