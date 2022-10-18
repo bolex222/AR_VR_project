@@ -1110,7 +1110,7 @@ MonoBehaviour:
   prefabZoneCapture: {fileID: 7015694500367037985, guid: 8898e2d34f30ea443a41e5fc9fa73f90, type: 3}
   timerDuration: 60
   captureTheFlagScoreUIManager: {fileID: 57141978}
-  gameEndUIManager: {fileID: 0}
+  gameEndUIManager: {fileID: 8132298018523285865}
 --- !u!114 &1692207206
 MonoBehaviour:
   m_ObjectHideFlags: 0
