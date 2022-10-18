@@ -4,8 +4,9 @@ using UnityEngine;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
-public class ThirdPersonShooterController : MonoBehaviour
+public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private float normalSensitivity;
@@ -62,16 +63,21 @@ public class ThirdPersonShooterController : MonoBehaviour
             thirdPersonController.SetRotateOnMove(true);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
-
         if (starterAssetsInputs.fire && starterAssetsInputs.aim)
         {
-            Vector3 aimRotateDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-            if (gunHeat <= 0)
-            {
-                gunHeat = 1.5f;  // this is the interval between firing.
-                Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
-            }
-            starterAssetsInputs.fire = false;
+            photonView.RPC("FireBullet", RpcTarget.AllViaServer, mouseWorldPosition);
         }
+    }
+
+    [PunRPC]
+    private void FireBullet(Vector3 mouseWorldPos)
+    {
+        Vector3 aimRotateDirection = (mouseWorldPos - spawnBulletPosition.position).normalized;
+        if (gunHeat <= 0)
+        {
+            gunHeat = GameDataManager.Instance.data.DelayShot;  // this is the interval between firing.
+            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
+        }
+        starterAssetsInputs.fire = false;
     }
 }

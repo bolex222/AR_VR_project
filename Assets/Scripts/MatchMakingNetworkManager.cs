@@ -96,7 +96,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
             // TODO: Instantiate the prefab representing my own avatar only if it is UserMe
             if (UserManager.UserMeInstance == null)
             {
-                Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
+                //Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                 Vector3 initialPos = UserDeviceManager.GetDeviceUsed() == UserDeviceType.HTC
                     ? new Vector3(0f, 1f, 0f)
@@ -126,8 +126,6 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
 
     public void JoinTeam(AllGenericTypes.Team team)
     {
-        Debug.Log(playersTeamA.Contains(PhotonNetwork.LocalPlayer));
-        Debug.Log(playersTeamB.Contains(PhotonNetwork.LocalPlayer));
         if (team == AllGenericTypes.Team.TeamA && !playersTeamA.Contains(PhotonNetwork.LocalPlayer))
         {
             Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in A");
@@ -139,17 +137,12 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
             playersTeamB.Add(PhotonNetwork.LocalPlayer);
         }
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            startButtonUi.gameObject.SetActive(true);
-        }
-
         Debug.Log($"Team A {playersTeamA.Count} | Team B {playersTeamB.Count}");
     }
 
     public void StartGame()
     {
-        Debug.Log("game start");
+        //Debug.Log("game start");
         //TODO
         SceneManager.LoadScene("map");
     }

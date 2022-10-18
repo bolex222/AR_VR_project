@@ -82,6 +82,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         isConnecting = false;
         //ipInputField.text = "10.169.129.241";
         ipInputField.text = "192.168.1.18";
+        // ipInputField.text = "10.169.130.167";
+        // ipInputField.text = "10.169.129.241";
+        //ipInputField.text = "10.188.191.49";
         portInputField.text = "5055";
     }
 
@@ -104,13 +107,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             return;
         }
 
-        Debug.Log(string.Format("Connect event server PhotonNetwork.IsConnected {0}", PhotonNetwork.IsConnected));
         progressLabel.SetActive(true);
         controlPanel.SetActive(false);
         isConnecting = true;
         PhotonNetwork.NickName = nickNameInputField.text;
 
-        // TODO: put the code to start the connection process and connect to the master server, which manage Lobby process
         // Tells to the user that we are trying to connect
         isConnecting = true;
         // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
@@ -162,8 +163,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        // TODO: it means that we are connected to the master server, so try to join an exising room
-        Debug.Log("Connected to server");
         // VHD attention, cet événement est appelé lorsque on quitte une room et que l'on revient sur le Lobby.
         if (isConnecting)
         {
@@ -174,29 +173,19 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        Debug.LogWarningFormat("OnDisconnected() was called by PUN with reason {0}", cause);
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.LogWarningFormat("OnJoinRandomFailed() was called by PUN. {0}: {1}", returnCode, message);
-
-        // TODO: joining the room has failed, so we try creating a new one
-        Debug.Log("Create Room");
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
     }
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("OnJoinedRoom()");
-        // TODO the room has been joined, so we can load the Scene for starting the application
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            Debug.Log("We load the scene 'MainRoom'");
-
-
             // #Critical
             // Load the Room Level.
             PhotonNetwork.LoadLevel("Matchmaking");

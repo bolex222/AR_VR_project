@@ -5,11 +5,9 @@ using DefaultNamespace;
 using UnityEngine;
 using Cinemachine;
 
-public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
+public class UserManager : MonoBehaviourPunCallbacks
 {
     public static GameObject UserMeInstance;
-
-    public Material PlayerLocalMat;
 
     /// <summary>
     /// Represents the GameObject on which to change the color for the local player
@@ -23,37 +21,11 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
     public GameObject CameraFollow = null;
     public GameObject CameraAim = null;
 
-    public int Health = 3;
-    
-    private int previousHealth;
-
-    #region Snwoball Spawn
-
-    /// <summary>
-    /// The Transform from which the snow ball is spawned
-    /// </summary>
-    [SerializeField] Transform snowballSpawner;
-
-    /// <summary>
-    /// The prefab to create when spawning
-    /// </summary>
-    [SerializeField] GameObject SnowballPrefab;
-
-
-
-    // Use to configure the throw ball feature
-    [Range(0.2f, 100.0f)] public float MinSpeed;
-    [Range(0.2f, 100.0f)] public float MaxSpeed;
-    [Range(0.2f, 100.0f)] public float MaxSpeedForPressDuration;
-    private float pressDuration = 0;
-
-    #endregion
-
     void Awake()
     {
         if (photonView.IsMine)
         {
-            Debug.LogFormat("Avatar UserMe created for userId {0}", photonView.ViewID);
+            //Debug.LogFormat("Avatar UserMe created for userId {0}", photonView.ViewID);
             UserMeInstance = gameObject; 
         }
         CameraPlayer.SetActive(photonView.IsMine);
@@ -73,7 +45,6 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
         //updateGoFreeLookCameraRig();
         //followLocalPlayer();
         activateLocalPlayer();
-        UpdateHealthMaterial();
     }
 
     protected void activateLocalPlayer()
@@ -95,76 +66,4 @@ public class UserManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer
             }
         }
     }
-    
-    
-    [PunRPC]
-    void FireBullet(Vector3 position, Vector3 directionAndSpeed, PhotonMessageInfo info)
-    {
-        // fire
-    }
-    
-    #region Health Management
-    /// <summary>
-    /// The Transform from which the snow ball is spawned
-    /// </summary>
-    [SerializeField] float ForceHit;
-
-    public void HitBySnowball()
-    {
-        if (!photonView.IsMine) return;
-        Debug.Log("Got me");
-        var rb = GetComponent<Rigidbody>();
-        rb.AddForce((-transform.forward + (transform.up * 0.1f) ) * ForceHit, ForceMode.Impulse);
-
-
-        // Manage to leave room as UserMe
-        if (--Health <= 0)
-        {
-            PhotonNetwork.LeaveRoom();
-        }
-    }
-    
-    public void UpdateHealthMaterial()
-    {
-        try
-        {
-            var rend = transform.Find("EthanBody").gameObject.GetComponent<Renderer>();
-            switch (Health)
-            {
-                case 1:
-                    rend.material.color = Color.red;
-                    break;
-
-                case 2:
-                    rend.material.color = Color.yellow;
-                    break;
-
-                case 3:
-                default:
-                    rend.material.color = Color.green;
-                    break;
-            }
-        }
-        catch (System.Exception)
-        {
-
-        }
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if(stream.IsWriting)
-        {
-            stream.SendNext(Health);
-        }
-        else
-        {
-            Health = (int)stream.ReceiveNext();
-        }
-
-        if(previousHealth != Health) UpdateHealthMaterial();
-        previousHealth = Health;
-    }
-    #endregion
-    
 }

@@ -23,13 +23,16 @@ public class SpawnerManager : MonoBehaviour
     {
         //return a transform for one of the red spawns
         return redTeamSpawns[Random.Range(0, redTeamSpawns.Length)].transform;
+        //return redTeamSpawns[0].transform;
     }
 
     public Transform GetRandomBlueSpawn()
     {
         //return a transform for one of the red spawns
         return blueTeamSpawns[Random.Range(0, redTeamSpawns.Length)].transform;
+        //return blueTeamSpawns[0].transform;
     }
+
     //this method gets given the team number to find a spawn for
     public Transform GetTeamSpawn(int teamNumber)
     {

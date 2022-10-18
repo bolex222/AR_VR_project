@@ -1,13 +1,12 @@
-using Interfaces;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UI_documents
 {
-    public class StartGame : MonoBehaviour
+    public class StartGameUI : MonoBehaviour
     {
         [SerializeField] private UIDocument uiDocument;
-        [SerializeField] private MatchMakingNetworkManager matchmakingNetworkManager;
+        [SerializeField] private MatchMakingUi matchMakingUi;
 
         private Button _startGameButton;
 
@@ -20,7 +19,7 @@ namespace UI_documents
 
         private void Onclick()
         {
-            matchmakingNetworkManager.StartGame();
+            matchMakingUi.OnStartGame();
             gameObject.SetActive(false);
         }
     }

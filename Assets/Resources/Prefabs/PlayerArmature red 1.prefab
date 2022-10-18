@@ -2279,7 +2279,6 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 5509695129777146481}
   - {fileID: 801076575305723076}
-  - {fileID: 9075488316341796536}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -2295,17 +2294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92305f0585e66f45a158587d5b263c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerLocalMat: {fileID: 0}
   CameraPlayer: {fileID: 2264238780722023198}
   CameraFollow: {fileID: 9219427365244700021}
   CameraAim: {fileID: 9219427365434559633}
-  Health: 3
-  snowballSpawner: {fileID: 0}
-  SnowballPrefab: {fileID: 0}
-  MinSpeed: 0
-  MaxSpeed: 0
-  MaxSpeedForPressDuration: 0
-  ForceHit: 0
 --- !u!136 &-6088139115087464158
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2333,6 +2324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
+  teleprovider: {fileID: 0}
 --- !u!1 &6849052827262947767
 GameObject:
   m_ObjectHideFlags: 0
