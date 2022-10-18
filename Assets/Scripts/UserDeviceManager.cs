@@ -19,11 +19,9 @@ using UnityEngine;
             switch (deviceUsed)
             {
                 case "htc":
+                    return UserDeviceType.HTC;
                 case "auto":
-                    // Si l'app config demande du HTC mais que le casque n'est pas branché
-                    Debug.LogWarning("AppConfig asked for HTC, but not active, so use PC version");
                     return UnityEngine.XR.XRSettings.isDeviceActive ? UserDeviceType.HTC : UserDeviceType.PC;
-
                 case "pc":
                     return UserDeviceType.PC;
 

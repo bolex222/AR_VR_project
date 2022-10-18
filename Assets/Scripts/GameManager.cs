@@ -1,8 +1,13 @@
 using Interfaces;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public enum GameModeOptions {DeathMatch, CaptureTheFlag}
+public enum GameModeOptions
+{
+    DeathMatch,
+    CaptureTheFlag
+}
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -17,6 +22,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject teamAPlayerPrefabVR;
     public GameObject teamBPlayerPrefabVR;
 
+    [SerializeField] private GameObject pioupiouPrefab;
+
     private void Start()
     {
         Instance = this;
@@ -28,7 +35,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             case GameModeOptions.CaptureTheFlag:
                 _game = gameObject.GetComponent<CaptureTheFlag>();
                 break;
-
         }
 
         SetupGame();
@@ -57,14 +63,31 @@ public class GameManager : MonoBehaviourPunCallbacks
             UserDeviceManager.GetPrefabToSpawnWithDeviceUsed(pcPrefabForRightTeam, htcPrefabForRightTeam);
 
         Transform spawn =
-            team == AllGenericTypes.Team.TeamA ? SpawnerManager.instance.GetTeamSpawn(0) : SpawnerManager.instance.GetTeamSpawn(1);
+            team == AllGenericTypes.Team.TeamA
+                ? SpawnerManager.instance.GetTeamSpawn(0)
+                : SpawnerManager.instance.GetTeamSpawn(1);
 
 
-        Vector3 initialPos = UserDeviceManager.GetDeviceUsed() == UserDeviceType.HTC
+        UserDeviceType userDeviceType = UserDeviceManager.GetDeviceUsed();
+
+        Vector3 initialPos = userDeviceType == UserDeviceType.HTC
             ? new Vector3(0f, 1f, 0f)
             : new Vector3(0f, 5f, 0f);
-        PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, spawn.position, spawn.rotation);
+        GameObject player = PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, spawn.position, spawn.rotation);
+
+        if (userDeviceType == UserDeviceType.HTC)
+        {
+            GameObject pioupiou =
+                PhotonNetwork.Instantiate("Prefabs/" + pioupiouPrefab.name, initialPos, Quaternion.identity);
+
+            SocketInteractor pioupiouSocketInteractor = pioupiou.GetComponentInChildren<SocketInteractor>();
+            XRSocketInteractor playerSocket = player.GetComponentInChildren<XRSocketInteractor>();
+
+            if (pioupiouSocketInteractor != null && playerSocket != null)
+            {
+                pioupiouSocketInteractor._xrSocketInteractor = playerSocket;
+                pioupiouSocketInteractor.GunTp();
+            }
+        }
     }
-
-
 }

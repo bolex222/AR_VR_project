@@ -4,10 +4,10 @@ using UnityEngine.UIElements;
 
 namespace UI_documents
 {
-   public class TeamSelection : MonoBehaviour
+   public class TeamSelectionUI : MonoBehaviour
    {
       [SerializeField] private UIDocument uiDocument;
-      [SerializeField] private MatchMakingNetworkManager matchmakingNetworkManager;
+      [SerializeField] private MatchMakingUi matchMakingUi;
 
       private Button _teamAButton;
       private Button _teamBButton;
@@ -26,7 +26,7 @@ namespace UI_documents
 
       private void OnclickAnyButton(AllGenericTypes.Team team)
       {
-         matchmakingNetworkManager.JoinTeam(team);
+         matchMakingUi.OnSelectTeam(team);
          gameObject.SetActive(false);
       }
    }

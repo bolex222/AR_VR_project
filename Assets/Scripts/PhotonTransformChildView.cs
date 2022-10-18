@@ -29,7 +29,7 @@ public class PhotonTransformChildView : MonoBehaviourPunCallbacks, IPunObservabl
 
     }
 
-    [SerializeField] private float ratio = 0.8f;
+    // [SerializeField] private float ratio = 0.8f;
     #region IPUnObservable
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -42,8 +42,6 @@ public class PhotonTransformChildView : MonoBehaviourPunCallbacks, IPunObservabl
                 stream.SendNext(SynchronizedChildTransform[i].localPosition);
                 stream.SendNext(SynchronizedChildTransform[i].localRotation);
                 stream.SendNext(SynchronizedChildTransform[i].localScale);
-
-                Debug.Log("sending transform");
             }
         }
         else
@@ -53,8 +51,6 @@ public class PhotonTransformChildView : MonoBehaviourPunCallbacks, IPunObservabl
                 SynchronizedChildTransform[i].localPosition = (Vector3)stream.ReceiveNext();
                 SynchronizedChildTransform[i].localRotation = (Quaternion)stream.ReceiveNext();
                 SynchronizedChildTransform[i].localScale = (Vector3)stream.ReceiveNext();
-
-                Debug.Log("receive transform");
             }
         }
 
