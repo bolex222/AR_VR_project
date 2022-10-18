@@ -139,11 +139,6 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
             playersTeamB.Add(PhotonNetwork.LocalPlayer);
         }
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            startButtonUi.gameObject.SetActive(true);
-        }
-
         Debug.Log($"Team A {playersTeamA.Count} | Team B {playersTeamB.Count}");
     }
 
