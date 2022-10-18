@@ -11,6 +11,7 @@ public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
     [SerializeField] public GameObject prefabZoneCapture;
     [SerializeField] public float timerDuration;
     [SerializeField] public CaptureTheFlagScoreUIManager captureTheFlagScoreUIManager;
+    [SerializeField] public GameEndUIManager gameEndUIManager;
 
     public static UnityEvent ChangeCaptureStatus;
 
@@ -105,11 +106,11 @@ public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
     {
         if (winnerTeam == AllGenericTypes.Team.Both || winnerTeam == AllGenericTypes.Team.None)
         {
-            Debug.Log("Draw");
-            return;
+            gameEndUIManager.gameObject.SetActive(true);
+            gameEndUIManager.GameEndDraw(winnerTeam);
         }
-
-        Debug.Log($"Team {(winnerTeam == AllGenericTypes.Team.TeamA ? "A" : "B")} Won!");
+        gameEndUIManager.gameObject.SetActive(true);
+        gameEndUIManager.GameEndTeamWin(winnerTeam);
     }
 
     public void OnDisable()
