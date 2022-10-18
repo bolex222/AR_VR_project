@@ -1213,7 +1213,7 @@ Transform:
   - {fileID: 1168204980}
   - {fileID: 1191897929}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1569260916
 MonoBehaviour:
@@ -1373,6 +1373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1692207207}
+  - component: {fileID: 1692207208}
   - component: {fileID: 1692207206}
   - component: {fileID: 1692207205}
   m_Layer: 0
@@ -1396,7 +1397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capturePointsContainer: {fileID: 172716995}
   prefabZoneCapture: {fileID: 7015694500367037985, guid: 8898e2d34f30ea443a41e5fc9fa73f90, type: 3}
-  timerDuration: 60
+  timerDuration: 1200
   captureTheFlagScoreUIManager: {fileID: 57141978}
   gameEndUIManager: {fileID: 8132298018523285865}
 --- !u!114 &1692207206
@@ -1432,6 +1433,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1692207208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692207204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0a296c5eb145e0995474a8c8fad6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aRPoints:
+    spawnPoints: []
+    captureZones: []
+    throwable: []
 --- !u!1 &1702566842
 GameObject:
   m_ObjectHideFlags: 0

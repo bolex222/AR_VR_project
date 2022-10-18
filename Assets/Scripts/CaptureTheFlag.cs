@@ -120,9 +120,22 @@ public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
 
     public void SetUpGame()
     {
-        _capturePointsLocations.Add(new Vector3(-10, 0, 0));
-        _capturePointsLocations.Add(new Vector3(10, 0, 0));
+        ARPointManager.Point[] captureZones = ARPointManager.Instance.aRPoints.captureZones;
+
+        foreach (ARPointManager.Point captureZone in captureZones)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(new Vector3(captureZone.x, 50, captureZone.z), Vector3.down, out hit))
+            {
+                _capturePointsLocations.Add(new Vector3(captureZone.x, hit.point.y, captureZone.z));
+            }
+            else
+            {
+                _capturePointsLocations.Add(new Vector3(captureZone.x, -10.52f, captureZone.z));
+            }
+        }
         captureTheFlagScoreUIManager.gameObject.SetActive(true);
+        Debug.Log("et la");
         foreach (Vector3 capturePointLocation in _capturePointsLocations)
         {
             GameObject tempPrefabZoneCapture =

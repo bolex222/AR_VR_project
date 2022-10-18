@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameDataManager : MonoBehaviour
 {
-    public static GameDataManager Instance { get; private set; }
+        public static GameDataManager Instance { get; private set; }
 
     private string jsonPath;
 
