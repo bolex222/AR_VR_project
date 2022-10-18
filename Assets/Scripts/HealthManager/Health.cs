@@ -58,20 +58,24 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     private void PlayerVisibility(bool state)
     {
-        transform.GetChild(1).gameObject.SetActive(state); // hide skeleton
-        transform.GetChild(2).gameObject.SetActive(state);// hide gun 
         gameObject.GetComponent<BasicRigidBodyPush>().enabled = state;//collider rigibody
         gameObject.GetComponent<StarterAssets.StarterAssetsInputs>().enabled = state;
         gameObject.GetComponent<Collider>().enabled = state;
         gameObject.GetComponent<ThirdPersonShooterController>().enabled = state;
         healthBar.gameObject.SetActive(state);
+        transform.GetChild(1).gameObject.SetActive(state); // hide skeleton
+        transform.GetChild(2).gameObject.SetActive(state);// hide gun 
     }
 
     public void Die()
     {
         photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, false);
         _timerOn = true;
-        deathScreen.gameObject.SetActive(true);  
+        deathScreen.gameObject.SetActive(true);
+        if (photonView.IsMine)
+        {
+            GetSpawn();
+        }
     }
 
     
@@ -95,8 +99,6 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (_timerOn)
         {
-            
-
             if (_timeLeft > 0)
             {
                 _timeLeft -= Time.deltaTime;
@@ -104,11 +106,6 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
             else
             {
                 _timerOn = false;
-
-                if (photonView.IsMine)
-                {
-                    GetSpawn();
-                }
 
                 photonView.RPC("ResetHealth", RpcTarget.AllViaServer);
                 photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, true);
