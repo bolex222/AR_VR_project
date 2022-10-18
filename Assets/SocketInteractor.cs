@@ -6,13 +6,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class SocketInteractor : MonoBehaviour
 {
-    [SerializeField] public XRSocketInteractor _xrSocketInteractor;
+    public XRSocketInteractor xrSocketInteractor;
     [SerializeField] private XRGrabInteractable _xrGrabInteractable;
 
     public void GunTp()
     {
         Debug.Log("TP");
-        _xrSocketInteractor.StartManualInteraction(_xrGrabInteractable);
+        xrSocketInteractor.StartManualInteraction(_xrGrabInteractable);
     }
     
     public void Debug1() {Debug.Log(1);}

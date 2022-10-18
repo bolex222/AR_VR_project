@@ -47,8 +47,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         _game.GameStart();
     }
 
+    
     public void Spawn()
     {
+        
+        // INSTANTIATE THE RIGHT PREFAB DEPENDING ON THE USER TEAM AND DEVICE
+        
         AllGenericTypes.Team team = MatchMakingNetworkManager.playersTeamA.Contains(PhotonNetwork.LocalPlayer)
             ? AllGenericTypes.Team.TeamA
             : AllGenericTypes.Team.TeamB;
@@ -73,6 +77,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         Vector3 initialPos = userDeviceType == UserDeviceType.HTC
             ? new Vector3(0f, 1f, 0f)
             : new Vector3(0f, 5f, 0f);
+        
+        // INSTANTIATE THE PLAYER
         GameObject player = PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, spawn.position, spawn.rotation);
 
         if (userDeviceType == UserDeviceType.HTC)
@@ -85,7 +91,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             if (pioupiouSocketInteractor != null && playerSocket != null)
             {
-                pioupiouSocketInteractor._xrSocketInteractor = playerSocket;
+                pioupiouSocketInteractor.xrSocketInteractor = playerSocket;
                 pioupiouSocketInteractor.GunTp();
             }
         }
