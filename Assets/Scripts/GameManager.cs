@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum GameModeOptions {DeathMatch, CaptureTheFlag}
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager Instance;
     public GameModeOptions gameMode;

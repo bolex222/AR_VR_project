@@ -27,14 +27,14 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.GetComponent<UserManager>())
         {
-            
+            //it's a player
             Debug.Log("Bullet hit: " + collision.gameObject.name);
-
             Health health = collision.transform.GetComponent<Health>();
-            //health.TakeDamage(bulletDamage);
-            health.photonView.RPC("TakeDamage", RpcTarget.All, bulletDamage);
+            health.TakeDamage(bulletDamage);
+            //health.photonView.RPC("TakeDamage", RpcTarget.AllViaServer, bulletDamage);
+            
         }
     }
 }

@@ -65,7 +65,7 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
         }
         if (starterAssetsInputs.fire && starterAssetsInputs.aim)
         {
-            photonView.RPC("FireBullet", RpcTarget.All, mouseWorldPosition);
+            photonView.RPC("FireBullet", RpcTarget.AllViaServer, mouseWorldPosition);
         }
     }
 

@@ -92,7 +92,12 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Add(playerTeam);
             if (playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Add(playerTeam);
-            UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(true);
+
+            if (other.gameObject.GetPhotonView().IsMine)
+            {
+                UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(true);
+            }
+            
         }
     }
 
@@ -102,7 +107,11 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Remove(playerTeam);
             if (playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Remove(playerTeam);
-            UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(false);
+
+            if (other.gameObject.GetPhotonView().IsMine)
+            {
+                UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(false);
+            }
         }
     }
 
