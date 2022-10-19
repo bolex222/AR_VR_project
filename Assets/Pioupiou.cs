@@ -5,7 +5,7 @@ using Interfaces;
 using Photon.Pun;
 using UnityEngine;
 
-public class Pioupiou : MonoBehaviour
+public class Pioupiou : MonoBehaviourPunCallbacks
 {
     private bool IsGrabed;
     [SerializeField] private GameObject pioupiouMesh;
@@ -33,6 +33,12 @@ public class Pioupiou : MonoBehaviour
         }
     }
 
+    public void OnShot()
+    {
+        photonView.RPC("ShootGun", RpcTarget.AllViaServer);
+    }
+
+    [PunRPC]
     public void ShootGun()
     {
         Debug.Log("here");
