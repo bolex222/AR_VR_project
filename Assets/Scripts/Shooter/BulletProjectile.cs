@@ -43,7 +43,7 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
         if (playerTeam is not null && playerTeam.team == teamToAvoid)
         {
             Debug.Log("hit same team");
-            Destroy(gameObject);
+            // Destroy(gameObject);
             return;
         }
 
