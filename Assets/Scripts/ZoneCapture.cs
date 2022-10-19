@@ -125,8 +125,8 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
         
         if (other.transform.root.TryGetComponent(out PlayerTeam playerTeam))
         {
-            if (!_playerTeamA.Contains(playerTeam) && playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Remove(playerTeam);
-            if (!_playerTeamB.Contains(playerTeam) && playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Remove(playerTeam);
+            if (_playerTeamA.Contains(playerTeam)) _playerTeamA.Remove(playerTeam);
+            if (_playerTeamB.Contains(playerTeam)) _playerTeamB.Remove(playerTeam);
 
             if (other.transform.root.gameObject.GetPhotonView().IsMine)
             {
