@@ -2398,8 +2398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e513c4a761d514c9cdbc7f00d18d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 10
+  currentHealth: 10
   player: {fileID: 7775603790140945985}
   deathScreen: {fileID: 1606097446276808763}
   healthBar: {fileID: 8738423367808705081}
@@ -4208,30 +4208,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2611073810324359720, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
   m_PrefabInstance: {fileID: 6735546705770473489}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8738423367808705087}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76b14786cfd0e7d4eb84a6a5f82b924c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8738423367808705087 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2611073810324359726, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
-  m_PrefabInstance: {fileID: 6735546705770473489}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5740217280230809648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8738423367808705087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cfa9c35b67036d4d9461c1eda86c62a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_player: {fileID: 0}
 --- !u!224 &8738423368095206363 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2611073808899630026, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
