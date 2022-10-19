@@ -40,7 +40,7 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
         {
             //it's a player
             Debug.Log("Bullet hit player: " + collision.gameObject.name);
-            Health health = collision.transform.GetComponent<Health>();
+            Health health = playerTeam.GetComponent<Health>();
             health.TakeDamage(bulletDamage);
             //health.photonView.RPC("TakeDamage", RpcTarget.AllViaServer, bulletDamage);
         }
