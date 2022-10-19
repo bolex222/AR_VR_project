@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameDataManager : MonoBehaviour
 {
-    public static GameDataManager Instance { get; private set; }
+        public static GameDataManager Instance { get; private set; }
 
     private string jsonPath;
 
@@ -17,6 +17,7 @@ public class GameDataManager : MonoBehaviour
         public int LifeNumber;
         public float DelayShot;
         public float DelayTeleport;
+        public float DelayRespawn;
         public string ColorShotVirus;
         public string ColorShotKMS;
         public int NbContaminedPlayerToVictory;

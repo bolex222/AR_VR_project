@@ -35,7 +35,7 @@ namespace TPS_Player
         void Start()
         {
             //TODO check cursor du cul
-            // Cursor.lockState = CursorLockMode.Locked;
+            
         }
 
 
@@ -115,8 +115,10 @@ namespace TPS_Player
             if (!isPlayerActive) return;
             UpdateMovment();
             UpdateLook();
-            UpdateGravity();
+            UpdateGravity();        
         }
+
+        
 
         void Interact()
         {

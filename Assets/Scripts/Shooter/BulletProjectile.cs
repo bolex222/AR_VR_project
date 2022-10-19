@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class BulletProjectile : MonoBehaviour
+public class BulletProjectile : MonoBehaviourPunCallbacks
 {
     public float bulletSpeed = 40f;
     public float bulletDamage = 1f;
@@ -26,11 +27,14 @@ public class BulletProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.GetComponent<UserManager>())
         {
+            //it's a player
+            Debug.Log("Bullet hit: " + collision.gameObject.name);
             Health health = collision.transform.GetComponent<Health>();
-
             health.TakeDamage(bulletDamage);
+            //health.photonView.RPC("TakeDamage", RpcTarget.AllViaServer, bulletDamage);
+            
         }
     }
 }

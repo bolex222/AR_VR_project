@@ -25,6 +25,8 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
 
     public TextMeshProUGUI battle;
 
+    private ParticleSystem ps;
+
     // public string MyString = string.Empty;
 
     // Start is called before the first frame update
@@ -33,6 +35,11 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
         state = State.Neutral;
         _playerTeamB = new List<PlayerTeam>();
         _playerTeamA = new List<PlayerTeam>();
+    }
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -57,8 +64,12 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (_progress <= -1f)
             {
+                ps = GetComponentInChildren<ParticleSystem>();
+                var main = ps.main;
+
                 state = State.Captured;
-                GetComponent<Renderer>().material.color = Color.blue;
+                main.startColor = Color.blue;
+                GetComponentInChildren<Renderer>().material.color = Color.blue;
                 capturedBy = AllGenericTypes.Team.TeamB;
                 CaptureTheFlag.ChangeCaptureStatus.Invoke();
                 return;
@@ -73,8 +84,12 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (_progress >= 1f)
             {
+                ps = GetComponentInChildren<ParticleSystem>();
+                var main = ps.main;
+
                 state = State.Captured;
-                GetComponent<Renderer>().material.color = Color.red;
+                main.startColor = Color.red;
+                GetComponentInChildren<Renderer>().material.color = Color.red;
                 capturedBy = AllGenericTypes.Team.TeamA;
                 CaptureTheFlag.ChangeCaptureStatus.Invoke();
                 return;
@@ -92,7 +107,12 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Add(playerTeam);
             if (playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Add(playerTeam);
-            UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(true);
+
+            if (other.gameObject.GetPhotonView().IsMine)
+            {
+                UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(true);
+            }
+            
         }
     }
 
@@ -102,7 +122,11 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Remove(playerTeam);
             if (playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Remove(playerTeam);
-            UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(false);
+
+            if (other.gameObject.GetPhotonView().IsMine)
+            {
+                UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(false);
+            }
         }
     }
 
