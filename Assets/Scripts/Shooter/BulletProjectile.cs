@@ -26,7 +26,7 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter(Collider other)
     {
-        EnterCollistion();
+        EnterCollistion(other);
     }
 
 
@@ -35,7 +35,7 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
     // EnterCollistion();
     }
 
-    private void EnterCollistion()
+    private void EnterCollistion(Collider collision)
     {
         Debug.Log("Bullet hit: " + collision.gameObject.name);
 
