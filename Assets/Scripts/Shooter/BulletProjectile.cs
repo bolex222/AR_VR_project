@@ -26,17 +26,19 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
 
     private void OnCollisionEnter(Collision collision)
     {
-        PlayerTeam playerTeam = collision.gameObject.GetComponentInParent<PlayerTeam>();
+        Debug.Log("Bullet hit: " + collision.gameObject.name);
+
+        PlayerTeam playerTeam = collision.transform.root.GetComponent<PlayerTeam>();
         if (playerTeam is not null && playerTeam.team == teamToAvoid)
         {
             Destroy(gameObject);
             return;
         }
 
-        if (collision.gameObject.GetComponent<PlayerTeam>())
+        if (playerTeam)
         {
             //it's a player
-            Debug.Log("Bullet hit: " + collision.gameObject.name);
+            Debug.Log("Bullet hit player: " + collision.gameObject.name);
             Health health = collision.transform.GetComponent<Health>();
             health.TakeDamage(bulletDamage);
             //health.photonView.RPC("TakeDamage", RpcTarget.AllViaServer, bulletDamage);
