@@ -28,9 +28,10 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
     {
         Debug.Log("Bullet hit: " + collision.gameObject.name);
 
-        PlayerTeam playerTeam = collision.transform.root.GetComponent<PlayerTeam>();
+        PlayerTeam playerTeam = collision.gameObject.GetComponentInParent<PlayerTeam>();
         if (playerTeam is not null && playerTeam.team == teamToAvoid)
         {
+            Debug.Log("hit same team");
             Destroy(gameObject);
             return;
         }
