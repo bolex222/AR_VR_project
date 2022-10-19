@@ -2333,6 +2333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
+  teleprovider: {fileID: 0}
 --- !u!1 &6849052827262947767
 GameObject:
   m_ObjectHideFlags: 0

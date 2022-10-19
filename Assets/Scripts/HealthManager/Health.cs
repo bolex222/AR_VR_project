@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
 {
     public float maxHealth = 10f;
     public float currentHealth = 10f;
+    public AudioManager deathSound;
 
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
@@ -25,6 +26,7 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0f)
         {
             Die();
+            deathSound.Play("PlayerDeath");
             currentHealth = maxHealth;
             healthBar.SetMaxHealth(maxHealth);
         }
@@ -34,5 +36,13 @@ public class Health : MonoBehaviour
     {
         player.transform.position = respawnPoint.transform.position;
         Physics.SyncTransforms();
+    }
+
+    public void Update()
+    {
+          if (Input.GetKeyDown("t"))
+        {
+            deathSound.Play("PlayerDeath");
+        }
     }
 }

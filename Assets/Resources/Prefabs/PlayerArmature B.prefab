@@ -2349,6 +2349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 10
+  deathSound: {fileID: 0}
   player: {fileID: 7530138449772684186}
   respawnPoint: {fileID: 0}
   healthBar: {fileID: 2628232530558247177}
@@ -2365,6 +2366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
+  teleprovider: {fileID: 0}
 --- !u!1 &7230746166357667230
 GameObject:
   m_ObjectHideFlags: 0
