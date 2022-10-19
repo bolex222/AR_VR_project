@@ -77,9 +77,8 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
         if (gunHeat <= 0)
         {
             gunHeat = GameDataManager.Instance.data.DelayShot;  // this is the interval between firing.
-            GameObject bullet = PhotonNetwork.Instantiate("Prefabs/" + pfBulletProjectile.name, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
+            Transform bullet = Instantiate( pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
             BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
-
             bulletScript.teamToAvoid = playerTeam.team;
 
         }
