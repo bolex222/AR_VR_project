@@ -798,8 +798,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Head: {fileID: 7775603789837755622}
   rotation: 1
-  MiniMapCamera: {fileID: 7298906712026584694}
-  miniRotation: 1
 --- !u!1 &7775603789260490577
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,11 +3951,6 @@ MonoBehaviour:
   lockX: 1
   lockY: 0
   lockZ: 1
---- !u!20 &7298906712026584694 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 551357522006136450, guid: 74e3b2a264ec81a408a08bea0e13930c, type: 3}
-  m_PrefabInstance: {fileID: 7128138577277698292}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7506326828950507342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3968,7 +3961,7 @@ PrefabInstance:
     - target: {fileID: 5916080900996072580, guid: 1115482ea40ff8f4eafff80e67d82eb0, type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 50b0124041e16a147b0baaa546e36014, type: 3}
+      objectReference: {fileID: 2800000, guid: 5655742da3ab99f47996b151f3c78067, type: 3}
     - target: {fileID: 6998629080937208676, guid: 1115482ea40ff8f4eafff80e67d82eb0, type: 3}
       propertyPath: m_Name
       value: ArrowUI
