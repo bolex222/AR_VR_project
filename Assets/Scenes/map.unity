@@ -927,6 +927,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2683842021707726416, guid: 37198b2cc545b634d844bf80f119508a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 225
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683842021707726416, guid: 37198b2cc545b634d844bf80f119508a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 225
+      objectReference: {fileID: 0}
+    - target: {fileID: 7705615759090000001, guid: 37198b2cc545b634d844bf80f119508a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 7705615759090000001, guid: 37198b2cc545b634d844bf80f119508a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 210
+      objectReference: {fileID: 0}
     - target: {fileID: 8355030960496889807, guid: 37198b2cc545b634d844bf80f119508a, type: 3}
       propertyPath: m_Name
       value: MiniMap
