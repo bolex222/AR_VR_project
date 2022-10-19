@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Interfaces;
@@ -23,8 +24,18 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
         bulletRigidbody.velocity = transform.forward * bulletSpeed;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        EnterCollistion();
+    }
+
 
     private void OnCollisionEnter(Collision collision)
+    {
+    // EnterCollistion();
+    }
+
+    private void EnterCollistion()
     {
         Debug.Log("Bullet hit: " + collision.gameObject.name);
 

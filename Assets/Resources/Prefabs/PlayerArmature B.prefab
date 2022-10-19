@@ -1966,6 +1966,7 @@ GameObject:
   - component: {fileID: 7206413697948588997}
   - component: {fileID: -2428000461891174966}
   - component: {fileID: 8008429927145633618}
+  - component: {fileID: 3803502763986154262}
   m_Layer: 0
   m_Name: PlayerArmature B
   m_TagString: Player
@@ -2359,6 +2360,20 @@ MonoBehaviour:
     m_Bits: 0
   canPush: 0
   strength: 1.1
+--- !u!136 &3803502763986154262
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191049770193287456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.4166226
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7083113, z: 0}
 --- !u!1 &7230746166357667230
 GameObject:
   m_ObjectHideFlags: 0
