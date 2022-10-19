@@ -128,7 +128,15 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
                 _timerOn = false;
 
                 photonView.RPC("ResetHealth", RpcTarget.AllViaServer);
-                photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, true);
+
+                if (UserDeviceManager.GetDeviceUsed() == UserDeviceType.PC)
+                {
+                    photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, true);
+                }
+                else
+                {
+                    photonView.RPC("PlayerVisibilityVR", RpcTarget.AllViaServer, true);
+                }
 
                 deathScreen.gameObject.SetActive(false);
                 _timeLeft = respawnTime;
