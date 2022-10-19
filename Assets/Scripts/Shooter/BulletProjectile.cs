@@ -12,6 +12,8 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
     public float bulletDamage = 1f;
     public AllGenericTypes.Team teamToAvoid;
 
+    private bool hasAlreadyHit;
+
     private Rigidbody bulletRigidbody;
 
     private void Awake()
@@ -49,11 +51,15 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
 
         if (playerTeam)
         {
-            //it's a player
-            Debug.Log("Bullet hit player: " + collision.gameObject.name);
-            Health health = playerTeam.GetComponent<Health>();
-            health.TakeDamage(bulletDamage);
-            //health.photonView.RPC("TakeDamage", RpcTarget.AllViaServer, bulletDamage);
+            if (!hasAlreadyHit)
+            {
+                //it's a player
+                Debug.Log("Bullet hit player: " + collision.gameObject.name);
+                Health health = playerTeam.GetComponent<Health>();
+                health.TakeDamage(bulletDamage);
+                //health.photonView.RPC("TakeDamage", RpcTarget.AllViaServer, bulletDamage);
+                hasAlreadyHit = true;
+            }
         }
 
         Destroy(gameObject);
