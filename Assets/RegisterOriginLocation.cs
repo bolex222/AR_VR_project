@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
-
 public class RegisterOriginLocation : MonoBehaviour
 {
    [SerializeField] private Camera Head;
@@ -15,7 +10,7 @@ public class RegisterOriginLocation : MonoBehaviour
 
       if (rotation)
       {
-         transform.rotation = Quaternion.Euler(new Vector3(0, Head.gameObject.transform.rotation.y, 0));
+         transform.eulerAngles = new Vector3(0, Head.gameObject.transform.eulerAngles.y - 180f, 0);
       }
    }
 }

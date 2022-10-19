@@ -87,7 +87,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                 PhotonNetwork.Instantiate("Prefabs/" + pioupiouPrefab.name, initialPos, Quaternion.identity);
 
             SocketInteractor pioupiouSocketInteractor = pioupiou.GetComponentInChildren<SocketInteractor>();
+            Pioupiou pioupiouScript = pioupiou.GetComponent<Pioupiou>();
             XRSocketInteractor playerSocket = player.GetComponentInChildren<XRSocketInteractor>();
+            pioupiouScript.playerTeam = team;
 
             if (pioupiouSocketInteractor != null && playerSocket != null)
             {

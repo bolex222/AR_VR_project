@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 1727861451886306681}
   - component: {fileID: 1381552000789307550}
   - component: {fileID: 4188221461516763619}
-  m_Layer: 0
+  - component: {fileID: 6596299718865502239}
+  m_Layer: 14
   m_Name: pioupiou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,6 +36,7 @@ Transform:
   m_Children:
   - {fileID: 7767166948424160870}
   - {fileID: 8446840054983967755}
+  - {fileID: 330003455155071868}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -89,13 +91,10 @@ MonoBehaviour:
       m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
-      m_Calls: []
-  m_LastSelectExited:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1727861451886306681}
-        m_TargetAssemblyTypeName: SocketInteractor, Assembly-CSharp
-        m_MethodName: Debug3
+      - m_Target: {fileID: 6596299718865502239}
+        m_TargetAssemblyTypeName: pioupiou, Assembly-CSharp
+        m_MethodName: OnGrab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -105,9 +104,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 1727861451886306681}
         m_TargetAssemblyTypeName: SocketInteractor, Assembly-CSharp
         m_MethodName: GunTp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6596299718865502239}
+        m_TargetAssemblyTypeName: pioupiou, Assembly-CSharp
+        m_MethodName: OnDrop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -122,28 +136,13 @@ MonoBehaviour:
       m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1727861451886306681}
-        m_TargetAssemblyTypeName: SocketInteractor, Assembly-CSharp
-        m_MethodName: Debug1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_Activated:
     m_PersistentCalls:
-      m_Calls: []
-  m_Deactivated:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1727861451886306681}
-        m_TargetAssemblyTypeName: SocketInteractor, Assembly-CSharp
-        m_MethodName: Debug2
+      - m_Target: {fileID: 6596299718865502239}
+        m_TargetAssemblyTypeName: pioupiou, Assembly-CSharp
+        m_MethodName: ShootGun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -153,6 +152,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -229,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33edb6b8a3c835d48bb63c15a94719e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _xrSocketInteractor: {fileID: 0}
+  xrSocketInteractor: {fileID: 0}
   _xrGrabInteractable: {fileID: 8064702392170261310}
 --- !u!114 &1381552000789307550
 MonoBehaviour:
@@ -270,6 +272,22 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &6596299718865502239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845636241034010768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75865b25ddf527e4784f3eb9da9f888a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pioupiouMesh: {fileID: 6953933322599419100}
+  pfBulletProjectile: {fileID: 4770247759774708552, guid: 7276d9dc3c729f64fa8e71be6b08877f, type: 3}
+  bulletOrigin: {fileID: 330003455155071868}
+  playerTeam: 0
 --- !u!1 &6918656876048548533
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8446840054983967755}
   - component: {fileID: 1663654672589156577}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,8 +313,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6918656876048548533}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00022029877, y: 0.398, z: 1.3920002}
-  m_LocalScale: {x: 1.55, y: 2.8625, z: 4.6982813}
+  m_LocalPosition: {x: -0.00022029877, y: 0.398, z: 0.3}
+  m_LocalScale: {x: 1.55, y: 2.8625, z: 2.81}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9021972779633586499}
@@ -310,11 +328,42 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6918656876048548533}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7338333925706852257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330003455155071868}
+  m_Layer: 14
+  m_Name: bulletOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &330003455155071868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7338333925706852257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.31, y: 0.14, z: 2.75}
+  m_LocalScale: {x: 1, y: 1, z: 1.925}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9021972779633586499}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7800300879793844621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -374,8 +423,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: pioupiou for unity
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: db7b1e450d5234a448303602da1f0cd7, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: db7b1e450d5234a448303602da1f0cd7, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db7b1e450d5234a448303602da1f0cd7, type: 3}
+--- !u!1 &6953933322599419100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: db7b1e450d5234a448303602da1f0cd7, type: 3}
+  m_PrefabInstance: {fileID: 7800300879793844621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7767166948424160870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: db7b1e450d5234a448303602da1f0cd7, type: 3}

@@ -3,12 +3,14 @@ using Interfaces;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
+using Unity.VisualScripting;
 
 
 public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
 {
     private List<PlayerTeam> _playerTeamA;
     private List<PlayerTeam> _playerTeamB;
+    
 
     public enum State
     {
@@ -103,12 +105,14 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out PlayerTeam playerTeam))
-        {
-            if (playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Add(playerTeam);
-            if (playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Add(playerTeam);
 
-            if (other.gameObject.GetPhotonView().IsMine)
+        if (other.transform.root.TryGetComponent(out PlayerTeam playerTeam))
+        {
+            Debug.Log(playerTeam);
+            if (!_playerTeamA.Contains(playerTeam) && playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Add(playerTeam);
+            if (!_playerTeamB.Contains(playerTeam) && playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Add(playerTeam);
+
+            if (other.transform.root.gameObject.GetPhotonView().IsMine)
             {
                 UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(true);
             }
@@ -118,12 +122,13 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out PlayerTeam playerTeam))
+        
+        if (other.transform.root.TryGetComponent(out PlayerTeam playerTeam))
         {
-            if (playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Remove(playerTeam);
-            if (playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Remove(playerTeam);
+            if (!_playerTeamA.Contains(playerTeam) && playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Remove(playerTeam);
+            if (!_playerTeamB.Contains(playerTeam) && playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Remove(playerTeam);
 
-            if (other.gameObject.GetPhotonView().IsMine)
+            if (other.transform.root.gameObject.GetPhotonView().IsMine)
             {
                 UI.Instance.flagZoneCaptureProgressCanvas.gameObject.SetActive(false);
             }

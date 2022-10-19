@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using Photon.Pun;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
 {
     public float bulletSpeed = 40f;
     public float bulletDamage = 1f;
+    public AllGenericTypes.Team teamToAvoid;
 
     private Rigidbody bulletRigidbody;
 
@@ -20,13 +22,16 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
         bulletRigidbody.velocity = transform.forward * bulletSpeed;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Destroy(gameObject);
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
+        PlayerTeam playerTeam = collision.gameObject.GetComponentInParent<PlayerTeam>();
+        if (playerTeam is not null && playerTeam.team == teamToAvoid)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (collision.gameObject.GetComponent<UserManager>())
         {
             //it's a player
@@ -34,7 +39,8 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
             Health health = collision.transform.GetComponent<Health>();
             health.TakeDamage(bulletDamage);
             //health.photonView.RPC("TakeDamage", RpcTarget.AllViaServer, bulletDamage);
-            
         }
+
+        Destroy(gameObject);
     }
 }
