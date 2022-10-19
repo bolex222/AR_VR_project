@@ -27,10 +27,11 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Bullet hit: " + collision.gameObject.name);
         if (collision.gameObject.GetComponent<UserManager>())
         {
             //it's a player
-            Debug.Log("Bullet hit: " + collision.gameObject.name);
+            Debug.Log("Bullet hit player: " + collision.gameObject.name);
             Health health = collision.transform.GetComponent<Health>();
             health.TakeDamage(bulletDamage);
             //health.photonView.RPC("TakeDamage", RpcTarget.AllViaServer, bulletDamage);

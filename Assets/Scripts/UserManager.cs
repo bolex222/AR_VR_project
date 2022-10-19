@@ -58,7 +58,6 @@ public class UserManager : MonoBehaviourPunCallbacks
     {
         if (Input.GetKeyDown("escape") && !CursorLockedVar)
         {
-  
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = (false);
             CursorLockedVar = (true);

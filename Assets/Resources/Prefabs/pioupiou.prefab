@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33edb6b8a3c835d48bb63c15a94719e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _xrSocketInteractor: {fileID: 0}
+  xrSocketInteractor: {fileID: 0}
   _xrGrabInteractable: {fileID: 8064702392170261310}
 --- !u!114 &1381552000789307550
 MonoBehaviour:

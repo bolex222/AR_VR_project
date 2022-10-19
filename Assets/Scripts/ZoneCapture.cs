@@ -145,34 +145,4 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
             GetComponent<Renderer>().material.color = (Color)stream.ReceiveNext();
         }
     }
-
-    // [PunRPC]
-    // public void CaptureProgress(float progressCoef, float progressValue, float captureCondition,
-    //     List<PlayerMapAreas> teamList, Color teamColor, Image progressUI, int teamNumber)
-    // {
-    //     progressUI.color = teamColor;
-    //
-    //     if (teamNumber == 1)
-    //     {
-    //         progressValue += teamList.Count * progressCoef * Time.deltaTime;
-    //     }
-    //     else if (teamNumber == 2)
-    //     {
-    //         progressValue -= teamList.Count * progressCoef * Time.deltaTime;
-    //     }
-    //
-    //     progressImage.fillAmount = progress;
-    //
-    //
-    //     if (progressImage.fillAmount == captureCondition)
-    //     {
-    //         state = State.Captured;
-    //         GetComponent<Renderer>().material.color = teamColor;
-    //     }
-    //
-    //     if (progressValue > 0 && teamList.Count == 0)
-    //     {
-    //         progressValue = 0;
-    //     }
-    // }
 }
