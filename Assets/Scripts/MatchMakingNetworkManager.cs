@@ -147,5 +147,9 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
         SceneManager.LoadScene("map");
     }
 
+    public bool CanStartGame()
+    {
+        return playersTeamA.Count + playersTeamB.Count >= PhotonNetwork.CurrentRoom.PlayerCount;
+    }
     #endregion
 }
