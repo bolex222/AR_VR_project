@@ -7,23 +7,12 @@ using UnityEngine;
 
 public class Pioupiou : MonoBehaviourPunCallbacks
 {
-    private bool IsGrabed;
     [SerializeField] private GameObject pioupiouMesh;
     [SerializeField] private GameObject pfBulletProjectile;
     [SerializeField] private Transform bulletOrigin;
     public AllGenericTypes.Team playerTeam;
 
     private float _gunHeat;
-
-    public void OnGrab()
-    {
-        IsGrabed = true;
-    }
-
-    public void OnDrop()
-    {
-        IsGrabed = false;
-    }
 
     public void Update()
     {
