@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Interfaces;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class BulletProjectile : MonoBehaviourPunCallbacks
 {
@@ -32,7 +33,7 @@ public class BulletProjectile : MonoBehaviourPunCallbacks
             return;
         }
 
-        if (collision.gameObject.GetComponent<UserManager>())
+        if (collision.gameObject.GetComponent<PlayerTeam>())
         {
             //it's a player
             Debug.Log("Bullet hit: " + collision.gameObject.name);
