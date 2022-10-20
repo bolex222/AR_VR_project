@@ -1,5 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement>
-        <ui:Button text="StartGame" display-tooltip-when-elided="true" name="start-game" style="background-color: rgba(171, 171, 171, 255);" />
+    <ui:VisualElement style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.74); flex-wrap: nowrap; -unity-text-align: upper-center; margin-top: auto; padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0;">
+        <ui:Label text="0 player connected" display-tooltip-when-elided="true" name="player-counter" style="height: 10%; justify-content: center; align-items: center; -unity-text-align: middle-center; font-size: 23px;" />
+        <ui:VisualElement style="justify-content: center; height: 100%; align-items: center;">
+            <ui:Button text="StartGame" display-tooltip-when-elided="true" name="start-game" style="background-color: rgb(171, 171, 171); left: auto; top: auto; bottom: auto; height: 10%; width: 50%; flex-wrap: nowrap; right: auto; justify-content: center; align-items: center;" />
+            <ui:Label text="Not all players have chosen their team" display-tooltip-when-elided="true" name="not-all-player" style="height: 10%; -unity-text-align: middle-center;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

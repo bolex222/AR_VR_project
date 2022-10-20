@@ -19,6 +19,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
     [SerializeField] private GameObject genericPCPlayerPrefab;
     [SerializeField] private GameObject genericVRPlayerPrefab;
     [SerializeField] private UIDocument startButtonUi;
+    public int quantityOfPlayerAlreadyInTeam;
 
 
     /*[Tooltip("The prefab to use for representing the user on a PC. Must be in Resources folder")]
@@ -130,11 +131,13 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
         {
             Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in A");
             playersTeamA.Add(PhotonNetwork.LocalPlayer);
+            quantityOfPlayerAlreadyInTeam++;
         }
         else if (team == AllGenericTypes.Team.TeamB && !playersTeamB.Contains(PhotonNetwork.LocalPlayer))
         {
             Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in B");
             playersTeamB.Add(PhotonNetwork.LocalPlayer);
+            quantityOfPlayerAlreadyInTeam++;
         }
 
         Debug.Log($"Team A {playersTeamA.Count} | Team B {playersTeamB.Count}");
@@ -147,5 +150,23 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
         SceneManager.LoadScene("map");
     }
 
+    public bool CanStartGame()
+    {
+        return quantityOfPlayerAlreadyInTeam >= PhotonNetwork.CurrentRoom.PlayerCount;
+    }
     #endregion
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(quantityOfPlayerAlreadyInTeam);
+        }
+        else
+        {
+            quantityOfPlayerAlreadyInTeam = (int)stream.ReceiveNext();
+        }
+    }
+    
+    
 }
