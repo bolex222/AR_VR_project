@@ -11,6 +11,8 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject AudioManager;
     public AudioSource PlayerDeath;
     public AudioClip playerDeathSound;
+    public AudioClip playerSpawnSound;
+    public AudioClip playerHurtSound;
 
     [SerializeField] private Transform player;
     [SerializeField] private GameObject deathScreen;
@@ -49,6 +51,10 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
     //[PunRPC]
     public void TakeDamage(float damage)
     {
+        if (photonView.IsMine)
+        {
+            Play(playerHurtSound);
+        }
         if (!photonView.IsMine) return;
         
         //healthBar.SetHealth(currentHealth);
@@ -94,7 +100,10 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         player.transform.position = spawn.position;
         player.transform.rotation = spawn.rotation;
         Physics.SyncTransforms();
-
+        if (photonView.IsMine)
+        {
+            Play(playerSpawnSound);
+        }
         Debug.Log("Respawned to: " + spawn.position);
     }
 
