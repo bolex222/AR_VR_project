@@ -24,10 +24,11 @@ public class Pioupiou : MonoBehaviourPunCallbacks
 
     public void OnShot()
     {
-        photonView.RPC("ShootGun", RpcTarget.All);
+        //photonView.RPC("ShootGun", RpcTarget.All);
+        ShootGun();
     }
 
-    [PunRPC]
+    //[PunRPC]
     public void ShootGun()
     {
         Debug.Log("here");
@@ -35,7 +36,7 @@ public class Pioupiou : MonoBehaviourPunCallbacks
         {
             Quaternion aimRotateDirection = pioupiouMesh.transform.rotation.normalized;
             _gunHeat = GameDataManager.Instance.data.DelayShot; // this is the interval between firing.
-            GameObject bullet = Instantiate(pfBulletProjectile, bulletOrigin.position, aimRotateDirection);
+            GameObject bullet = PhotonNetwork.Instantiate("Prefabs/"+ pfBulletProjectile, bulletOrigin.position, aimRotateDirection);
             BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
             bulletScript.teamToAvoid = playerTeam;
         }
