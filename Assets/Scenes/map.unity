@@ -1534,7 +1534,7 @@ MonoBehaviour:
   gameMode: 1
   teamAPlayerPrefabPC: {fileID: 7191049770193287456, guid: d7a40da42cbdf9543abfa89f885f7e73, type: 3}
   teamBPlayerPrefabPC: {fileID: 7191049770193287456, guid: 1a6f1bb768aa8f4428902f057829ba4f, type: 3}
-  teamAPlayerPrefabVR: {fileID: 7775603790140945998, guid: 534e414db854e064a908211e97b0d81a, type: 3}
+  teamAPlayerPrefabVR: {fileID: 7775603790140945998, guid: 2a968ce08fe6b0544ac4963291e96091, type: 3}
   teamBPlayerPrefabVR: {fileID: 7775603790140945998, guid: 534e414db854e064a908211e97b0d81a, type: 3}
   pioupiouPrefab: {fileID: 5845636241034010768, guid: cc7969534b80550419004f4fba111604, type: 3}
 --- !u!4 &1692207207

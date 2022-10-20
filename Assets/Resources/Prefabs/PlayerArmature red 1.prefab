@@ -2206,6 +2206,7 @@ MonoBehaviour:
     m_Bits: 1
   pfBulletProjectile: {fileID: 4770247759774708549, guid: 7276d9dc3c729f64fa8e71be6b08877f, type: 3}
   spawnBulletPosition: {fileID: 7155265295523885202}
+  playerTeam: {fileID: 0}
   thirdPersonController: {fileID: 6773564741526326127}
 --- !u!114 &5509695129777146481
 MonoBehaviour:

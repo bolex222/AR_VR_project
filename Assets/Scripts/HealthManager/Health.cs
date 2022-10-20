@@ -3,6 +3,8 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class Health : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -67,9 +69,27 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         transform.GetChild(2).gameObject.SetActive(state);// hide gun 
     }
 
+    [PunRPC]
+    private void PlayerVisibilityVR(bool state)
+    {
+        transform.GetChild(0).gameObject.SetActive(state);
+        transform.GetChild(1).gameObject.SetActive(state);
+        healthBar.gameObject.SetActive(state);
+        gameObject.GetComponent<InputActionManager>().enabled = state;
+        gameObject.GetComponent<Collider>().enabled = state;
+    }
+
     public void Die()
     {
-        photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, false);
+        if(UserDeviceManager.GetDeviceUsed() == UserDeviceType.PC)
+        {
+            photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, false);
+        }
+        else
+        {
+            photonView.RPC("PlayerVisibilityVR", RpcTarget.AllViaServer, false);
+        }
+
         _timerOn = true;
         deathScreen.gameObject.SetActive(true);
         if (photonView.IsMine)
@@ -108,7 +128,15 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
                 _timerOn = false;
 
                 photonView.RPC("ResetHealth", RpcTarget.AllViaServer);
-                photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, true);
+
+                if (UserDeviceManager.GetDeviceUsed() == UserDeviceType.PC)
+                {
+                    photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, true);
+                }
+                else
+                {
+                    photonView.RPC("PlayerVisibilityVR", RpcTarget.AllViaServer, true);
+                }
 
                 deathScreen.gameObject.SetActive(false);
                 _timeLeft = respawnTime;
