@@ -1966,6 +1966,7 @@ GameObject:
   - component: {fileID: 7206413697948588997}
   - component: {fileID: -2428000461891174966}
   - component: {fileID: 1116973850351642935}
+  - component: {fileID: -2356608520171960358}
   m_Layer: 0
   m_Name: PlayerArmature A
   m_TagString: Player
@@ -2215,7 +2216,7 @@ MonoBehaviour:
   aimSensitivity: 0.1
   aimColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 32703
   pfBulletProjectile: {fileID: 4770247759774708549, guid: 7276d9dc3c729f64fa8e71be6b08877f, type: 3}
   spawnBulletPosition: {fileID: 6811605875618104022}
   playerTeam: {fileID: -2428000461891174966}
@@ -2359,6 +2360,20 @@ MonoBehaviour:
     m_Bits: 0
   canPush: 0
   strength: 1.1
+--- !u!136 &-2356608520171960358
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191049770193287456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.4166226
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7083113, z: 0}
 --- !u!1 &7230746166357667230
 GameObject:
   m_ObjectHideFlags: 0
