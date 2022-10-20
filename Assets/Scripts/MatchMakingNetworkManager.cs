@@ -10,7 +10,7 @@ using UnityEngine.Events;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.UIElements.Cursor;
 
-public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmakingCallbacks, IInRoomCallbacks
+public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IPunObservable, IMatchmakingCallbacks, IInRoomCallbacks
 {
     public static MatchMakingNetworkManager Instance;
 
