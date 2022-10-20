@@ -17,9 +17,10 @@ public class ARPointManager: MonoBehaviour
     [Serializable]
     public class ARPoints
     {
-        public Point[] spawnPoints;
         public Point[] captureZones;
         public Point[] throwable;
+        public Point[] spawnPointsTeamA;
+        public Point[] spawnPointsTeamB;
     }
 
     public ARPoints aRPoints;

@@ -131,7 +131,7 @@ public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
             }
             else
             {
-                _capturePointsLocations.Add(new Vector3(captureZone.x, -10.52f, captureZone.z));
+                _capturePointsLocations.Add(new Vector3(captureZone.x, 0f, captureZone.z));
             }
         }
         captureTheFlagScoreUIManager.gameObject.SetActive(true);
