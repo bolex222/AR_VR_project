@@ -35,8 +35,8 @@ public class Pioupiou : MonoBehaviourPunCallbacks
         {
             Quaternion aimRotateDirection = pioupiouMesh.transform.rotation.normalized;
             _gunHeat = GameDataManager.Instance.data.DelayShot; // this is the interval between firing.
-            GameObject bullrt = PhotonNetwork.Instantiate("Prefabs/"+ pfBulletProjectile.name, bulletOrigin.position, aimRotateDirection);
-            BulletProjectile bulletScript = bullrt.GetComponent<BulletProjectile>();
+            GameObject bullet = Instantiate(pfBulletProjectile, bulletOrigin.position, aimRotateDirection);
+            BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
             bulletScript.teamToAvoid = playerTeam;
         }
     }
