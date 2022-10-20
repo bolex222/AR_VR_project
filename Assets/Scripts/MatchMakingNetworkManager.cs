@@ -19,7 +19,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IPunObservab
     [SerializeField] private GameObject genericPCPlayerPrefab;
     [SerializeField] private GameObject genericVRPlayerPrefab;
     [SerializeField] private UIDocument startButtonUi;
-    [SerializeField] public int quantityOfPlayerAlreadyInTeam;
+    public int quantityOfPlayerAlreadyInTeam;
 
 
     /*[Tooltip("The prefab to use for representing the user on a PC. Must be in Resources folder")]
@@ -114,6 +114,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IPunObservab
 
     private void Update()
     {
+        print($"selctteam: {quantityOfPlayerAlreadyInTeam}");
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             // Code to leave the room by pressing CTRL + the Leave button
