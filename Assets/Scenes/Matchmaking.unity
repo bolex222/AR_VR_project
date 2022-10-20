@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1708,8 +1708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20e7b8ac276dca4bbb7f8fe414452fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  genericPCPlayerPrefab: {fileID: 6773564741526326116, guid: 0e755e90cfd439f4fa1be7d6df8efa2f, type: 3}
-  genericVRPlayerPrefab: {fileID: 7775603790140945998, guid: 534e414db854e064a908211e97b0d81a, type: 3}
+  genericPCPlayerPrefab: {fileID: 7191049770193287456, guid: 932ff382b37f7b840a3ec64b5ea9709e, type: 3}
+  genericVRPlayerPrefab: {fileID: 7775603790140945998, guid: e18f245b80c6ae542afeb063a2c20152, type: 3}
   startButtonUi: {fileID: 1369364463}
 --- !u!1 &1760786043
 GameObject:

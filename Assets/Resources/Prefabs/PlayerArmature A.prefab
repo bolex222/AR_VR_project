@@ -1965,8 +1965,8 @@ GameObject:
   - component: {fileID: 4627914939867942140}
   - component: {fileID: 7206413697948588997}
   - component: {fileID: -2428000461891174966}
-  - component: {fileID: 1116973850351642935}
-  - component: {fileID: -2356608520171960358}
+  - component: {fileID: 8008429927145633618}
+  - component: {fileID: 3803502763986154262}
   m_Layer: 0
   m_Name: PlayerArmature A
   m_TagString: Player
@@ -2343,7 +2343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   teleprovider: {fileID: 0}
---- !u!114 &1116973850351642935
+--- !u!114 &8008429927145633618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2360,7 +2360,7 @@ MonoBehaviour:
     m_Bits: 0
   canPush: 0
   strength: 1.1
---- !u!136 &-2356608520171960358
+--- !u!136 &3803502763986154262
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2982,10 +2982,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2611073808899630027, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2611073809527289669, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -3013,10 +3009,6 @@ PrefabInstance:
     - target: {fileID: 2611073810324359721, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2611073810324359721, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2611073810324359723, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
       propertyPath: m_Value
@@ -3323,10 +3315,6 @@ PrefabInstance:
     - target: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_Name
       value: PlayerFollowCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_RootOrder
