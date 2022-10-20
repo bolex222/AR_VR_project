@@ -20,8 +20,9 @@ public class UserManager : MonoBehaviourPunCallbacks
     public GameObject CameraPlayer = null;
     public GameObject CameraFollow = null;
     public GameObject CameraAim = null;
+    public GameObject CameraMiniMap = null;
 
-    
+
     bool CursorLockedVar;
 
     void Awake()
@@ -34,6 +35,7 @@ public class UserManager : MonoBehaviourPunCallbacks
         CameraPlayer.SetActive(photonView.IsMine);
         CameraFollow.SetActive(photonView.IsMine);
         CameraAim.SetActive(photonView.IsMine);
+        CameraMiniMap.SetActive(photonView.IsMine);
 
         //DontDestroyOnLoad(gameObject);
 

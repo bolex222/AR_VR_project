@@ -2298,6 +2298,7 @@ MonoBehaviour:
   CameraPlayer: {fileID: 2264238780722023198}
   CameraFollow: {fileID: 9219427365244700021}
   CameraAim: {fileID: 9219427365434559633}
+  CameraMiniMap: {fileID: 0}
 --- !u!136 &-6088139115087464158
 CapsuleCollider:
   m_ObjectHideFlags: 0
