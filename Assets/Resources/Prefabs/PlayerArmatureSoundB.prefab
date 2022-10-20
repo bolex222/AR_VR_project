@@ -1968,6 +1968,7 @@ GameObject:
   - component: {fileID: 8008429927145633618}
   - component: {fileID: 352529819730631065}
   - component: {fileID: -5948549312748891238}
+  - component: {fileID: -1236054030879667706}
   m_Layer: 0
   m_Name: PlayerArmatureSoundB
   m_TagString: Player
@@ -2330,9 +2331,9 @@ MonoBehaviour:
   currentHealth: 10
   AudioManager: {fileID: 7383381757560908167, guid: a11cb32387486704eabb0a06550beff4, type: 3}
   PlayerDeath: {fileID: 352529819730631065}
-  playerDeathSound: {fileID: 8300000, guid: 940d90b7031620340b477e33659d3b84, type: 3}
+  playerDeathSound: {fileID: 8300000, guid: f9e65b2fc066c2741b513846a252a815, type: 3}
   playerSpawnSound: {fileID: 8300000, guid: a0d3295b619a0d349a49abd240c53f17, type: 3}
-  playerHurtSound: {fileID: 8300000, guid: 8c4841da101ab96408914591269255a7, type: 3}
+  playerHurtSound: {fileID: 8300000, guid: 76bfb0b5ab5bd354e9952a25743f7402, type: 3}
   player: {fileID: 7530138449772684186}
   deathScreen: {fileID: 1439003998847920449}
   healthBar: {fileID: 2628232530558247177}
@@ -2476,6 +2477,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
+--- !u!81 &-1236054030879667706
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191049770193287456}
+  m_Enabled: 1
 --- !u!1 &7230746166357667230
 GameObject:
   m_ObjectHideFlags: 0
