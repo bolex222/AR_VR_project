@@ -10,7 +10,7 @@ using UnityEngine.Events;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.UIElements.Cursor;
 
-public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmakingCallbacks, IInRoomCallbacks
+public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
 {
     public static MatchMakingNetworkManager Instance;
 
@@ -19,6 +19,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
     [SerializeField] private GameObject genericPCPlayerPrefab;
     [SerializeField] private GameObject genericVRPlayerPrefab;
     [SerializeField] private UIDocument startButtonUi;
+    public int quantityOfPlayerAlreadyInTeam;
 
 
     /*[Tooltip("The prefab to use for representing the user on a PC. Must be in Resources folder")]
@@ -113,6 +114,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
 
     private void Update()
     {
+        print($"selctteam: {quantityOfPlayerAlreadyInTeam}");
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             // Code to leave the room by pressing CTRL + the Leave button
@@ -130,13 +132,14 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
         {
             Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in A");
             playersTeamA.Add(PhotonNetwork.LocalPlayer);
+            quantityOfPlayerAlreadyInTeam++;
         }
         else if (team == AllGenericTypes.Team.TeamB && !playersTeamB.Contains(PhotonNetwork.LocalPlayer))
         {
             Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in B");
             playersTeamB.Add(PhotonNetwork.LocalPlayer);
         }
-
+        photonView.RPC("IncrementPlayerInTeam", RpcTarget.All);
         Debug.Log($"Team A {playersTeamA.Count} | Team B {playersTeamB.Count}");
     }
 
@@ -147,5 +150,19 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IMatchmaking
         SceneManager.LoadScene("map");
     }
 
+    public bool CanStartGame()
+    {
+        return quantityOfPlayerAlreadyInTeam >= PhotonNetwork.CurrentRoom.PlayerCount;
+    }
     #endregion
+
+
+
+    [PunRPC]
+    private void IncrementPlayerInTeam()
+    {
+        quantityOfPlayerAlreadyInTeam++;
+    }
+
+
 }
