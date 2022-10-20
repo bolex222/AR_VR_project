@@ -1911,6 +1911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1747575828}
   - component: {fileID: 1747575829}
+  - component: {fileID: 1747575830}
   m_Layer: 0
   m_Name: Network
   m_TagString: Untagged
@@ -1948,6 +1949,30 @@ MonoBehaviour:
   genericPCPlayerPrefab: {fileID: 7191049770193287456, guid: 932ff382b37f7b840a3ec64b5ea9709e, type: 3}
   genericVRPlayerPrefab: {fileID: 7775603790140945998, guid: e18f245b80c6ae542afeb063a2c20152, type: 3}
   startButtonUi: {fileID: 1369364463}
+  quantityOfPlayerAlreadyInTeam: 0
+--- !u!114 &1747575830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747575827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1747575829}
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1760786043
 GameObject:
   m_ObjectHideFlags: 0
