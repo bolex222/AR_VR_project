@@ -19,7 +19,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IPunObservab
     [SerializeField] private GameObject genericPCPlayerPrefab;
     [SerializeField] private GameObject genericVRPlayerPrefab;
     [SerializeField] private UIDocument startButtonUi;
-    [SerializeField] private int quantityOfPlayerAlreadyInTeam;
+    [SerializeField] public int quantityOfPlayerAlreadyInTeam;
 
 
     /*[Tooltip("The prefab to use for representing the user on a PC. Must be in Resources folder")]
