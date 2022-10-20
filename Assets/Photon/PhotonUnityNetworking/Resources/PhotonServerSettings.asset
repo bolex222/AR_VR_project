@@ -20,7 +20,7 @@ MonoBehaviour:
     AppVersion: 
     UseNameServer: 0
     FixedRegion: 
-    Server: 10.169.130.167
+    Server: 192.168.1.18
     Port: 5055
     ProxyServer: 
     Protocol: 0
@@ -52,6 +52,8 @@ MonoBehaviour:
   - ShootGun
   - PlayerVisibilityVR
   - IncrementPlayerInTeam
+  - JoinTeam
+  - EnterCollistion
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

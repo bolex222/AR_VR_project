@@ -6,6 +6,7 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 using Photon.Pun;
+using Shooter;
 
 public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
 {
@@ -78,6 +79,7 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
         if (gunHeat <= 0)
         {
             gunHeat = GameDataManager.Instance.data.DelayShot;  // this is the interval between firing.
+            Debug.Log("TPS player instantiate ONLY ONE shitty bullet");
             Transform bullet = Instantiate( pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
             BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
             bulletScript.teamToAvoid = playerTeam.team;

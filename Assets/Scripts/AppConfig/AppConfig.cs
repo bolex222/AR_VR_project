@@ -45,7 +45,6 @@ public class AppConfig {
     /// </summary>
     public void UpdateValuesFromJsonFile()
     {
-        Debug.Log(Application.absoluteURL);
         string path = System.IO.Path.Combine(Application.streamingAssetsPath, Application.productName+".AppConfig.json");
        
         UpdateValuesFromJsonFile(path);

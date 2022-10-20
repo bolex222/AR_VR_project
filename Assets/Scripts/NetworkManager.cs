@@ -74,10 +74,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IMatchmakingCallbacks, 
     {
         Instance = this;
 
-        /*Debug.Log("device:" + UserDeviceManager.GetDeviceUsed());
-        Debug.Log("prefab:" + UserDeviceManager.GetPrefabToSpawnWithDeviceUsed(playerPrefabPC, playerPrefabVR));
-
-        GameObject playerPrefab = UserDeviceManager.GetPrefabToSpawnWithDeviceUsed(playerPrefabPC, playerPrefabVR);
+        /*GameObject playerPrefab = UserDeviceManager.GetPrefabToSpawnWithDeviceUsed(playerPrefabPC, playerPrefabVR);
         if (playerPrefab == null)
         {
             Debug.LogErrorFormat(
@@ -103,19 +100,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IMatchmakingCallbacks, 
         }*/
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-        {
-            // Code to leave the room by pressing CTRL + the Leave button
-            if (Input.GetButtonUp("Leave"))
-            {
-                Debug.Log("Leave event");
-                LeaveRoom();
-            }
-        }
-    }
-
     public void JoinTeam(int teamCode)
     {
 
@@ -123,13 +107,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IMatchmakingCallbacks, 
         if (teamCode == 0 && !playersTeamA.Contains(PhotonNetwork.LocalPlayer))
         {
             playersTeamA.Add(PhotonNetwork.LocalPlayer);
-            Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in A");
             SceneManager.LoadScene("SampleScene");
         } 
         else if(teamCode == 1 && !playersTeamB.Contains(PhotonNetwork.LocalPlayer))
         {
             playersTeamB.Add(PhotonNetwork.LocalPlayer);
-            Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in B");
             SceneManager.LoadScene("SampleScene");
         }
 

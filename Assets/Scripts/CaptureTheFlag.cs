@@ -135,7 +135,6 @@ public class CaptureTheFlag : MonoBehaviour, IGameBehaviour
             }
         }
         captureTheFlagScoreUIManager.gameObject.SetActive(true);
-        Debug.Log("et la");
         foreach (Vector3 capturePointLocation in _capturePointsLocations)
         {
             GameObject tempPrefabZoneCapture =

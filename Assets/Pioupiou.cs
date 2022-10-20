@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Interfaces;
 using Photon.Pun;
+using Shooter;
 using UnityEngine;
 
 public class Pioupiou : MonoBehaviourPunCallbacks
@@ -31,7 +32,6 @@ public class Pioupiou : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ShootGun()
     {
-        Debug.Log("here");
         if (_gunHeat <= 0)
         {
             Quaternion aimRotateDirection = pioupiouMesh.transform.rotation.normalized;

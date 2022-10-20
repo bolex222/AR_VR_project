@@ -108,7 +108,6 @@ public class ZoneCapture : MonoBehaviourPunCallbacks, IPunObservable
 
         if (other.transform.root.TryGetComponent(out PlayerTeam playerTeam))
         {
-            Debug.Log(playerTeam);
             if (!_playerTeamA.Contains(playerTeam) && playerTeam.team == AllGenericTypes.Team.TeamA) _playerTeamA.Add(playerTeam);
             if (!_playerTeamB.Contains(playerTeam) && playerTeam.team == AllGenericTypes.Team.TeamB) _playerTeamB.Add(playerTeam);
 

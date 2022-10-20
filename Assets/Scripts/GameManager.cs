@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         switch (gameMode)
         {
             case GameModeOptions.DeathMatch:
-                Debug.Log("game is a deathMatch");
                 break;
             case GameModeOptions.CaptureTheFlag:
                 _game = gameObject.GetComponent<CaptureTheFlag>();
@@ -52,6 +51,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         
         // INSTANTIATE THE RIGHT PREFAB DEPENDING ON THE USER TEAM AND DEVICE
+        
+        Debug.Log( "current player in A? : "+ MatchMakingNetworkManager.playersTeamA.Contains(PhotonNetwork.LocalPlayer));
+        Debug.Log( "current player in B? : "+ MatchMakingNetworkManager.playersTeamB.Contains(PhotonNetwork.LocalPlayer));
         
         AllGenericTypes.Team team = MatchMakingNetworkManager.playersTeamA.Contains(PhotonNetwork.LocalPlayer)
             ? AllGenericTypes.Team.TeamA
@@ -90,6 +92,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             Pioupiou pioupiouScript = pioupiou.GetComponent<Pioupiou>();
             XRSocketInteractor playerSocket = player.GetComponentInChildren<XRSocketInteractor>();
             pioupiouScript.playerTeam = team;
+            
+            Debug.Log(pioupiouScript.playerTeam);
 
             if (pioupiouSocketInteractor != null && playerSocket != null)
             {

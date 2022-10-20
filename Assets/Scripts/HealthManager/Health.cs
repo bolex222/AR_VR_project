@@ -112,7 +112,6 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         player.transform.rotation = spawn.rotation;
         Physics.SyncTransforms();
 
-        Debug.Log("Respawned to: " + spawn.position);
     }
 
     private void RespawnTimer()

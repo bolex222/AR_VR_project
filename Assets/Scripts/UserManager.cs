@@ -44,7 +44,6 @@ public class UserManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("isLocalPlayer:" + photonView.IsMine);
         //updateGoFreeLookCameraRig();
         //followLocalPlayer();
         activateLocalPlayer();

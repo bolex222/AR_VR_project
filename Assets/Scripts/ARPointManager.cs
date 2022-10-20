@@ -34,12 +34,9 @@ public class ARPointManager: MonoBehaviour
         try
         {
             if (File.Exists(jsonPath))
-                Debug.Log("here");
             {
                 string jsonLevelContent = File.ReadAllText(jsonPath);
-                Debug.Log(jsonLevelContent);
                 ARPoints values = JsonUtility.FromJson<ARPoints>(jsonLevelContent);
-                Debug.Log(values);
                 aRPoints = values;
             }
         }
