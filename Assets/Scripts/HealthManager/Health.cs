@@ -8,6 +8,9 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float maxHealth;
     public float currentHealth;
+    public GameObject AudioManager;
+    public AudioSource PlayerDeath;
+    public AudioClip playerDeathSound;
 
     [SerializeField] private Transform player;
     [SerializeField] private GameObject deathScreen;
@@ -27,11 +30,20 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        
+        
     }
 
     private void Update()
     {
         RespawnTimer();
+        if (Input.GetKeyDown("t"))
+        {
+            TakeDamage(1);
+
+
+        }
+
     }
 
     //[PunRPC]
@@ -45,15 +57,23 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         if (currentHealth <= 0f)
         {
             Die();
+            Play(playerDeathSound);
             currentHealth = maxHealth;
+            
             healthBar.SetMaxHealth(maxHealth);
         }
+    }
+    public void Play(AudioClip clip)
+    {
+        PlayerDeath.clip = clip;
+        PlayerDeath.Play();
     }
 
     public void Die()
     {
         photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, false);
         _timerOn = true;
+
         deathScreen.gameObject.SetActive(true);
         if (photonView.IsMine)
         {
@@ -115,11 +135,4 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    public void Update()
-    {
-          if (Input.GetKeyDown("t"))
-        {
-            deathSound.Play("PlayerDeath");
-        }
-    }
 }
