@@ -138,9 +138,8 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IPunObservab
         {
             Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in B");
             playersTeamB.Add(PhotonNetwork.LocalPlayer);
-            quantityOfPlayerAlreadyInTeam++;
         }
-
+        photonView.RPC("IncrementPlayerInTeam", RpcTarget.All);
         Debug.Log($"Team A {playersTeamA.Count} | Team B {playersTeamB.Count}");
     }
 
@@ -157,19 +156,13 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IPunObservab
     }
     #endregion
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+
+
+    [PunRPC]
+    private void IncrementPlayerInTeam()
     {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(quantityOfPlayerAlreadyInTeam);
-            print($"send : {quantityOfPlayerAlreadyInTeam}");
-        }
-        else
-        {
-            quantityOfPlayerAlreadyInTeam = (int)stream.ReceiveNext();
-            print($"receive {quantityOfPlayerAlreadyInTeam}" );
-        }
+        quantityOfPlayerAlreadyInTeam++;
     }
-    
-    
+
+
 }
