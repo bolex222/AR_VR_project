@@ -24,7 +24,7 @@ public class Pioupiou : MonoBehaviourPunCallbacks
 
     public void OnShot()
     {
-        photonView.RPC("ShootGun", RpcTarget.AllViaServer);
+        photonView.RPC("ShootGun", RpcTarget.All);
     }
 
     [PunRPC]

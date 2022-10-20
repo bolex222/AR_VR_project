@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 40
   bulletDamage: 1
-  teamToAvoid: 0
+  teamToAvoid: 3
 --- !u!114 &4980848146979103207
 MonoBehaviour:
   m_ObjectHideFlags: 0
