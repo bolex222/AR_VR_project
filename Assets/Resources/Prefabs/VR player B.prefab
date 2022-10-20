@@ -2356,7 +2356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5dd27722893321479e235fe723053e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
   teleprovider: {fileID: 7775603790140945986}
 --- !u!114 &6002903191262691067
 MonoBehaviour:
