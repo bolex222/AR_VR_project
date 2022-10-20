@@ -93,8 +93,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             XRSocketInteractor playerSocket = player.GetComponentInChildren<XRSocketInteractor>();
             pioupiouScript.playerTeam = team;
             
-            Debug.Log(pioupiouScript.playerTeam);
-
             if (pioupiouSocketInteractor != null && playerSocket != null)
             {
                 pioupiouSocketInteractor.xrSocketInteractor = playerSocket;

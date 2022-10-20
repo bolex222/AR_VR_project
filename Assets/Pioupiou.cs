@@ -15,6 +15,11 @@ public class Pioupiou : MonoBehaviourPunCallbacks
 
     private float _gunHeat;
 
+    private void Start()
+    {
+        Debug.Log($"pioupiou start with team {playerTeam}");
+    }
+
     public void Update()
     {
         if (_gunHeat > 0)
@@ -36,6 +41,7 @@ public class Pioupiou : MonoBehaviourPunCallbacks
         {
             Quaternion aimRotateDirection = pioupiouMesh.transform.rotation.normalized;
             _gunHeat = GameDataManager.Instance.data.DelayShot; // this is the interval between firing.
+            Debug.Log("instantiate bullet by piou piou");
             GameObject bullet = Instantiate(pfBulletProjectile, bulletOrigin.position, aimRotateDirection);
             BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
             bulletScript.teamToAvoid = playerTeam;
