@@ -162,10 +162,12 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks, IPunObservab
         if (stream.IsWriting)
         {
             stream.SendNext(quantityOfPlayerAlreadyInTeam);
+            print($"send : {quantityOfPlayerAlreadyInTeam}");
         }
         else
         {
             quantityOfPlayerAlreadyInTeam = (int)stream.ReceiveNext();
+            print($"receive {quantityOfPlayerAlreadyInTeam}" );
         }
     }
     
