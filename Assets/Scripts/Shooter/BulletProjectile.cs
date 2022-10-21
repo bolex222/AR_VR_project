@@ -65,7 +65,7 @@ namespace Shooter
                 }
             }
 
-            // Destroy(gameObject);
+            Destroy(gameObject);
             Debug.Log("Bullet destroyed");
             Debug.Log("============= END OF BULLET PATH =========================");
         }
