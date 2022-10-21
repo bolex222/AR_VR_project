@@ -29,7 +29,7 @@ public class MatchMakingUi : MonoBehaviour
 
         if (_isUserVr)
         {
-           matchMakingNetworkManager = GameObject.Find("Network").GetComponent<MatchMakingNetworkManager>();
+            Debug.Log(matchMakingNetworkManager);
 
            vrRay = handRayInteractor.GetComponent<XRRayInteractor>();
            rayRenderer = handRayInteractor.GetComponent<LineRenderer>();
