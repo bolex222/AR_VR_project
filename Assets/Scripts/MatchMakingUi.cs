@@ -3,6 +3,7 @@ using Interfaces;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class MatchMakingUi : MonoBehaviour
 {
@@ -13,13 +14,27 @@ public class MatchMakingUi : MonoBehaviour
     [SerializeField] private UIDocument pcStartGame;
 
     [SerializeField] private MatchMakingNetworkManager matchMakingNetworkManager;
+    [SerializeField] private GameObject handRayInteractor;
 
     private bool _isUserVr;
+
+    private XRRayInteractor vrRay;
+    private LineRenderer rayRenderer;
+    private XRInteractorLineVisual rayInteractor;
 
     private void Start()
     {
         _isUserVr = UnityEngine.XR.XRSettings.isDeviceActive;
         DisplayTeamSelection();
+
+        if (_isUserVr)
+        {
+           matchMakingNetworkManager = GameObject.Find("Network").GetComponent<MatchMakingNetworkManager>();
+
+           vrRay = handRayInteractor.GetComponent<XRRayInteractor>();
+           rayRenderer = handRayInteractor.GetComponent<LineRenderer>();
+           rayInteractor = handRayInteractor.GetComponent<XRInteractorLineVisual>();
+        }
     }
 
     private void DisplayTeamSelection()
@@ -55,5 +70,12 @@ public class MatchMakingUi : MonoBehaviour
     public void OnStartGame()
     {
         matchMakingNetworkManager.StartGame();
+    }
+
+    public void activeRay()
+    {
+        vrRay.enabled = true;
+        rayRenderer.enabled = true;
+        rayInteractor.enabled = true;
     }
 }
