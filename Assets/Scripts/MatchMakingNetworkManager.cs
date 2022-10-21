@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -39,6 +40,12 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
+    }
+
+    private void Awake()
+    {
+            playersTeamA = new List<Player>();
+            playersTeamB = new List<Player>();
     }
 
     void Start()
