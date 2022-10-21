@@ -18,7 +18,7 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
 
     [SerializeField] private Transform player;
     [SerializeField] private GameObject deathScreen;
-    
+
     public HealthBar healthBar;
 
     private float respawnTime;
@@ -34,8 +34,6 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        
-        
     }
 
     private void Update()
@@ -46,12 +44,14 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
     //[PunRPC]
     public void TakeDamage(float damage)
     {
+        Debug.Log(photonView.IsMine);
         if (photonView.IsMine)
         {
             Play(playerHurtSound);
         }
+
         if (!photonView.IsMine) return;
-        
+
         //healthBar.SetHealth(currentHealth);
         currentHealth -= damage;
 
@@ -60,10 +60,11 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
             Die();
             Play(playerDeathSound);
             currentHealth = maxHealth;
-            
+
             healthBar.SetMaxHealth(maxHealth);
         }
     }
+
     public void Play(AudioClip clip)
     {
         PlayerDeath.clip = clip;
@@ -82,14 +83,9 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
 
     public void Die()
     {
-        if(UserDeviceManager.GetDeviceUsed() == UserDeviceType.PC)
-        {
-            photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, false);
-        }
-        else
-        {
-            photonView.RPC("PlayerVisibilityVR", RpcTarget.AllViaServer, false);
-        }
+        photonView.RPC(
+            UserDeviceManager.GetDeviceUsed() == UserDeviceType.PC ? "PlayerVisibility" : "PlayerVisibilityVR",
+            RpcTarget.AllViaServer, false);
 
         _timerOn = true;
 
@@ -100,15 +96,17 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    
+
     private void GetSpawn()
     {
         AllGenericTypes.Team team = MatchMakingNetworkManager.playersTeamA.Contains(PhotonNetwork.LocalPlayer)
-                   ? AllGenericTypes.Team.TeamA
-                   : AllGenericTypes.Team.TeamB;
+            ? AllGenericTypes.Team.TeamA
+            : AllGenericTypes.Team.TeamB;
 
         Transform spawn =
-        team == AllGenericTypes.Team.TeamA ? SpawnerManager.instance.GetTeamSpawn(0) : SpawnerManager.instance.GetTeamSpawn(1);
+            team == AllGenericTypes.Team.TeamA
+                ? SpawnerManager.instance.GetTeamSpawn(0)
+                : SpawnerManager.instance.GetTeamSpawn(1);
 
         player.transform.position = spawn.position;
         player.transform.rotation = spawn.rotation;
@@ -144,7 +142,6 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
 
                 deathScreen.gameObject.SetActive(false);
                 _timeLeft = respawnTime;
-                
             }
         }
     }
@@ -160,7 +157,6 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         {
             currentHealth = (float)stream.ReceiveNext();
             healthBar.SetHealth(currentHealth);
-
         }
     }
 }
