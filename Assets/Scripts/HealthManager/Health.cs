@@ -5,15 +5,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
+using TMPro;
 
 public class Health : MonoBehaviourPunCallbacks, IPunObservable
 {
-    public float maxHealth;
-    public float currentHealth;
+    private float maxHealth;
+    private float currentHealth;
 
     [SerializeField] private Transform player;
     [SerializeField] private GameObject deathScreen;
-    
+    [SerializeField] private TextMeshProUGUI deathScreenText;
+
+
     public HealthBar healthBar;
 
     private float respawnTime;
@@ -121,6 +124,8 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
             if (_timeLeft > 0)
             {
                 _timeLeft -= Time.deltaTime;
+
+                deathScreenText.text = "YOU ARE DEAD... " + (int)_timeLeft;
             }
             else
             {

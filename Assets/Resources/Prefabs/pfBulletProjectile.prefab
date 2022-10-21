@@ -179,6 +179,7 @@ MonoBehaviour:
   bulletSpeed: 40
   bulletDamage: 1
   teamToAvoid: 3
+  pfBulletProjectileTrail: {fileID: 2865741018903489682}
 --- !u!114 &4980848146979103207
 MonoBehaviour:
   m_ObjectHideFlags: 0

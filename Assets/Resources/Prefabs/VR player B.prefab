@@ -388,10 +388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e513c4a761d514c9cdbc7f00d18d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  currentHealth: 10
   player: {fileID: 4047420834964123444}
   deathScreen: {fileID: 5010585140275501390}
+  deathScreenText: {fileID: 0}
   healthBar: {fileID: 3064189907119438668}
 --- !u!1 &4047420834996450598
 GameObject:

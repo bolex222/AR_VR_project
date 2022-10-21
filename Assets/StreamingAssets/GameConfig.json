@@ -3,9 +3,9 @@
   "DelayShot": 0.2,
   "DelayTeleport": 1.0,
   "DelayRespawn": 5.0,
-  "ColorShotVirus": "#0000",
-  "ColorShotKMS": "#1111",
+  "ColorShotVirus": "#0000FF",
+  "ColorShotKMS": "#FF0000",
   "NbContaminedPlayerToVictory": 10,
   "RadiusExplosion": 50.0,
-  "TimeToAreaContamination":  5
+  "TimeToAreaContamination": 2
 }

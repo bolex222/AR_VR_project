@@ -10,6 +10,7 @@ namespace Shooter
         public float bulletDamage = 1f;
         public AllGenericTypes.Team teamToAvoid;
 
+        public TrailRenderer pfBulletProjectileTrail;
         private bool hasAlreadyHit;
 
         private Rigidbody bulletRigidbody;
