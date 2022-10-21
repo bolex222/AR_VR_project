@@ -12,6 +12,8 @@ public class Pioupiou : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject pfBulletProjectile;
     [SerializeField] private Transform bulletOrigin;
     public AllGenericTypes.Team playerTeam;
+    public AudioSource Shoot;
+    public AudioClip ShootSound;
 
     private float _gunHeat;
 
@@ -42,6 +44,7 @@ public class Pioupiou : MonoBehaviourPunCallbacks
             Quaternion aimRotateDirection = pioupiouMesh.transform.rotation.normalized;
             _gunHeat = GameDataManager.Instance.data.DelayShot; // this is the interval between firing.
             Debug.Log("instantiate bullet by piou piou");
+            Play(ShootSound);
             GameObject bullet = Instantiate(pfBulletProjectile, bulletOrigin.position, aimRotateDirection);
             BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
             bulletScript.teamToAvoid = playerTeam;
@@ -57,5 +60,10 @@ public class Pioupiou : MonoBehaviourPunCallbacks
     private void setUpTeam(int team)
     {
         playerTeam = (AllGenericTypes.Team)team;
+    }
+    public void Play(AudioClip clip)
+    {
+        Shoot.clip = clip;
+        Shoot.Play();
     }
 }

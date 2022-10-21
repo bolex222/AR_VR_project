@@ -23,6 +23,8 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
     public ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
+    public AudioSource Shoot;
+    public AudioClip ShootSound;
 
     private float gunHeat;
 
@@ -109,8 +111,15 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
             }
             BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
             bulletScript.teamToAvoid = playerTeam.team;
+            Play(ShootSound);
 
         }
         starterAssetsInputs.fire = false;
+    }
+    
+    public void Play(AudioClip clip)
+    {
+        Shoot.clip = clip;
+        Shoot.Play();
     }
 }

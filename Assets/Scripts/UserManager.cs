@@ -20,6 +20,7 @@ public class UserManager : MonoBehaviourPunCallbacks
     public GameObject CameraPlayer = null;
     public GameObject CameraFollow = null;
     public GameObject CameraAim = null;
+    
 
     
     bool CursorLockedVar;
