@@ -47,4 +47,16 @@ public class Pioupiou : MonoBehaviourPunCallbacks
             bulletScript.teamToAvoid = playerTeam;
         }
     }
+
+
+    public void TeamSetUp(AllGenericTypes.Team team)
+    {
+        photonView.RPC("setUpTeam", RpcTarget.AllViaServer, (int)team);
+    }
+
+    [PunRPC]
+    private void setUpTeam(int team)
+    {
+        playerTeam = (AllGenericTypes.Team)team;
+    }
 }

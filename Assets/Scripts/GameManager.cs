@@ -41,13 +41,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void SetupGame()
     {
-        photonView.RPC("Spawn", RpcTarget.AllViaServer);
+        Spawn();
+        // photonView.RPC("Spawn", RpcTarget.AllViaServer);
         _game.SetUpGame();
         _game.GameStart();
     }
 
 
-    [PunRPC]
+    // [PunRPC]
     public void Spawn()
     {
         
@@ -82,17 +83,17 @@ public class GameManager : MonoBehaviourPunCallbacks
             : new Vector3(0f, 5f, 0f);
         
         // INSTANTIATE THE PLAYER
-        GameObject player = Instantiate(playerPrefab, spawn.position, spawn.rotation);
+        GameObject player = PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, spawn.position, spawn.rotation);
 
         if (userDeviceType == UserDeviceType.HTC)
         {
             GameObject pioupiou =
-                Instantiate(pioupiouPrefab, initialPos, Quaternion.identity);
+                PhotonNetwork.Instantiate("Prefabs/" + pioupiouPrefab.name, initialPos, Quaternion.identity);
 
             SocketInteractor pioupiouSocketInteractor = pioupiou.GetComponentInChildren<SocketInteractor>();
             Pioupiou pioupiouScript = pioupiou.GetComponent<Pioupiou>();
             XRSocketInteractor playerSocket = player.GetComponentInChildren<XRSocketInteractor>();
-            pioupiouScript.playerTeam = team;
+            pioupiouScript.TeamSetUp(team);
             
             if (pioupiouSocketInteractor != null && playerSocket != null)
             {
@@ -101,4 +102,5 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
     }
+
 }

@@ -20,7 +20,7 @@ MonoBehaviour:
     AppVersion: 
     UseNameServer: 0
     FixedRegion: 
-    Server: 192.168.1.18
+    Server: 10.169.130.167
     Port: 5055
     ProxyServer: 
     Protocol: 0
@@ -55,6 +55,8 @@ MonoBehaviour:
   - JoinTeam
   - EnterCollistion
   - SetSpawnPointFromJson
+  - AssetTeamToPlayerAndPioupiou
+  - setUpTeam
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
