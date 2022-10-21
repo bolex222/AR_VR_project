@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 using Photon.Pun;
+using Shooter;
 
 public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
 {
@@ -14,6 +16,7 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] private Transform pfBulletProjectile;
     [SerializeField] private Transform spawnBulletPosition;
+    [SerializeField] private PlayerTeam playerTeam;
 
     public ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
@@ -78,7 +81,11 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
         if (gunHeat <= 0)
         {
             gunHeat = GameDataManager.Instance.data.DelayShot;  // this is the interval between firing.
-            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
+            Debug.Log("TPS player instantiate ONLY ONE shitty bullet");
+            Transform bullet = Instantiate( pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
+            BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
+            bulletScript.teamToAvoid = playerTeam.team;
+
         }
         starterAssetsInputs.fire = false;
         Play(ShootSound);

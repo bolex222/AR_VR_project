@@ -20,7 +20,7 @@ MonoBehaviour:
     AppVersion: 
     UseNameServer: 0
     FixedRegion: 
-    Server: 10.169.129.241
+    Server: 10.169.130.167
     Port: 5055
     ProxyServer: 
     Protocol: 0
@@ -49,6 +49,14 @@ MonoBehaviour:
   - Spawn
   - GetSpawn
   - RespawnTimer
+  - ShootGun
+  - PlayerVisibilityVR
+  - IncrementPlayerInTeam
+  - JoinTeam
+  - EnterCollistion
+  - SetSpawnPointFromJson
+  - AssetTeamToPlayerAndPioupiou
+  - setUpTeam
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

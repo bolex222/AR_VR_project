@@ -1965,8 +1965,10 @@ GameObject:
   - component: {fileID: 4627914939867942140}
   - component: {fileID: 7206413697948588997}
   - component: {fileID: -2428000461891174966}
-  - component: {fileID: 1116973850351642935}
-  - component: {fileID: -6830000057248794186}
+  - component: {fileID: 8008429927145633618}
+  - component: {fileID: 3803502763986154262}
+  - component: {fileID: 1510510170334630768}
+  - component: {fileID: 8441204339638759300}
   m_Layer: 0
   m_Name: PlayerArmature A
   m_TagString: Player
@@ -2216,11 +2218,12 @@ MonoBehaviour:
   aimSensitivity: 0.1
   aimColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 32703
   pfBulletProjectile: {fileID: 4770247759774708549, guid: 7276d9dc3c729f64fa8e71be6b08877f, type: 3}
   spawnBulletPosition: {fileID: 6811605875618104022}
+  playerTeam: {fileID: -2428000461891174966}
   thirdPersonController: {fileID: 7191049770193287467}
-  Shoot: {fileID: -6830000057248794186}
+  Shoot: {fileID: 1510510170334630768}
   ShootSound: {fileID: 8300000, guid: 369012db2052e054a8f217aa1b25b46d, type: 3}
 --- !u!114 &8195823528673474613
 MonoBehaviour:
@@ -2328,7 +2331,7 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 10
   AudioManager: {fileID: 7383381757560908167, guid: a11cb32387486704eabb0a06550beff4, type: 3}
-  PlayerDeath: {fileID: -6830000057248794186}
+  PlayerDeath: {fileID: 1510510170334630768}
   playerDeathSound: {fileID: 8300000, guid: f9e65b2fc066c2741b513846a252a815, type: 3}
   playerSpawnSound: {fileID: 8300000, guid: a0d3295b619a0d349a49abd240c53f17, type: 3}
   playerHurtSound: {fileID: 8300000, guid: 76bfb0b5ab5bd354e9952a25743f7402, type: 3}
@@ -2349,7 +2352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   teleprovider: {fileID: 0}
---- !u!114 &1116973850351642935
+--- !u!114 &8008429927145633618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2366,7 +2369,21 @@ MonoBehaviour:
     m_Bits: 0
   canPush: 0
   strength: 1.1
---- !u!82 &-6830000057248794186
+--- !u!136 &3803502763986154262
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191049770193287456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.4166226
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7083113, z: 0}
+--- !u!82 &1510510170334630768
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2462,6 +2479,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &8441204339638759300
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191049770193287456}
+  m_Enabled: 1
 --- !u!1 &7230746166357667230
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,10 +3095,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2611073808899630027, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2611073809527289669, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -3101,10 +3122,6 @@ PrefabInstance:
     - target: {fileID: 2611073810324359721, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2611073810324359721, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2611073810324359723, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
       propertyPath: m_Value
@@ -3174,30 +3191,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2611073810324359720, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
   m_PrefabInstance: {fileID: 19490235737533217}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2628232530558247183}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76b14786cfd0e7d4eb84a6a5f82b924c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2628232530558247183 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2611073810324359726, guid: a75e41b5dfce6a24b89ed617b24c705d, type: 3}
-  m_PrefabInstance: {fileID: 19490235737533217}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &179547127408249505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2628232530558247183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cfa9c35b67036d4d9461c1eda86c62a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_player: {fileID: 2496970808930761050}
 --- !u!1001 &4990005563569564252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3429,10 +3428,6 @@ PrefabInstance:
     - target: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_Name
       value: PlayerFollowCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_RootOrder

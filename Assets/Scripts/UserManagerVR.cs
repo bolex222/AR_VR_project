@@ -5,7 +5,7 @@ using DefaultNamespace;
 using UnityEngine;
 using Cinemachine;
 
-public class UserManager : MonoBehaviourPunCallbacks
+public class UserManagerVR : MonoBehaviourPunCallbacks
 {
     public static GameObject UserMeInstance;
 
@@ -17,11 +17,7 @@ public class UserManager : MonoBehaviourPunCallbacks
     /// <summary>
     /// The FreeLookCameraRig GameObject to configure for the UserMe
     // /// </summary>
-    public GameObject CameraPlayer = null;
-    public GameObject CameraFollow = null;
-    public GameObject CameraAim = null;
-
-    
+    public Camera CameraPlayer;
     bool CursorLockedVar;
 
     void Awake()
@@ -31,13 +27,9 @@ public class UserManager : MonoBehaviourPunCallbacks
             //Debug.LogFormat("Avatar UserMe created for userId {0}", photonView.ViewID);
             UserMeInstance = gameObject; 
         }
-        
-        if (CameraAim is not null)
-        {
-            CameraAim.SetActive(photonView.IsMine);
-        }
-        if (CameraPlayer is not null) CameraPlayer.SetActive(photonView.IsMine);
-        if (CameraFollow is not null) CameraFollow.SetActive(photonView.IsMine);
+
+        Debug.Log( "is mine ?" + photonView.IsMine);
+        CameraPlayer.enabled = true;
         
 
         //DontDestroyOnLoad(gameObject);
@@ -47,34 +39,34 @@ public class UserManager : MonoBehaviourPunCallbacks
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        //updateGoFreeLookCameraRig();
-        //followLocalPlayer();
-        activateLocalPlayer();
+    // void Start()
+    // {
+    //     //updateGoFreeLookCameraRig();
+    //     //followLocalPlayer();
+    //     // activateLocalPlayer();
+    //
+    //     // Cursor.lockState = CursorLockMode.Locked;
+    //     // Cursor.visible = (false);
+    //     // CursorLockedVar = (true);
+    // }
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = (false);
-        CursorLockedVar = (true);
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown("escape") && !CursorLockedVar)
-        {
-  
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = (false);
-            CursorLockedVar = (true);
-
-        }
-        else if (Input.GetKeyDown("escape") && CursorLockedVar)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = (true);
-            CursorLockedVar = (false);
-        }
-    }
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown("escape") && !CursorLockedVar)
+    //     {
+    //
+    //         Cursor.lockState = CursorLockMode.Locked;
+    //         Cursor.visible = (false);
+    //         CursorLockedVar = (true);
+    //
+    //     }
+    //     else if (Input.GetKeyDown("escape") && CursorLockedVar)
+    //     {
+    //         Cursor.lockState = CursorLockMode.None;
+    //         Cursor.visible = (true);
+    //         CursorLockedVar = (false);
+    //     }
+    // }
 
     protected void activateLocalPlayer()
     {
