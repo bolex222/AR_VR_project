@@ -41,12 +41,13 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void SetupGame()
     {
-        Spawn();
+        photonView.RPC("Spawn", RpcTarget.AllViaServer);
         _game.SetUpGame();
         _game.GameStart();
     }
 
-    
+
+    [PunRPC]
     public void Spawn()
     {
         
@@ -81,12 +82,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             : new Vector3(0f, 5f, 0f);
         
         // INSTANTIATE THE PLAYER
-        GameObject player = PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, spawn.position, spawn.rotation);
+        GameObject player = Instantiate(playerPrefab, spawn.position, spawn.rotation);
 
         if (userDeviceType == UserDeviceType.HTC)
         {
             GameObject pioupiou =
-                PhotonNetwork.Instantiate("Prefabs/" + pioupiouPrefab.name, initialPos, Quaternion.identity);
+                Instantiate(pioupiouPrefab, initialPos, Quaternion.identity);
 
             SocketInteractor pioupiouSocketInteractor = pioupiou.GetComponentInChildren<SocketInteractor>();
             Pioupiou pioupiouScript = pioupiou.GetComponent<Pioupiou>();
