@@ -21,6 +21,8 @@ public class UserManager : MonoBehaviourPunCallbacks
     public GameObject CameraFollow = null;
     public GameObject CameraAim = null;
 
+    [SerializeField] private AudioListener audioListener;
+
     
     bool CursorLockedVar;
 
@@ -38,6 +40,8 @@ public class UserManager : MonoBehaviourPunCallbacks
         }
         if (CameraPlayer is not null) CameraPlayer.SetActive(photonView.IsMine);
         if (CameraFollow is not null) CameraFollow.SetActive(photonView.IsMine);
+        if (audioListener is not null) audioListener.enabled = photonView.IsMine;
+        
         
 
         //DontDestroyOnLoad(gameObject);

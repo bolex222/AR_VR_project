@@ -2316,6 +2316,7 @@ MonoBehaviour:
   CameraPlayer: {fileID: 2496970808930761050}
   CameraFollow: {fileID: 4772347497188357937}
   CameraAim: {fileID: 4772347497386475221}
+  audioListener: {fileID: 8441204339638759300}
 --- !u!114 &7206413697948588997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2486,7 +2487,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7191049770193287456}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &7230746166357667230
 GameObject:
   m_ObjectHideFlags: 0

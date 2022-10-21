@@ -2400,6 +2400,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 10
+  AudioManager: {fileID: 0}
+  PlayerDeath: {fileID: 0}
+  playerDeathSound: {fileID: 0}
+  playerSpawnSound: {fileID: 0}
+  playerHurtSound: {fileID: 0}
   player: {fileID: 7775603790140945985}
   deathScreen: {fileID: 1606097446276808763}
   healthBar: {fileID: 8738423367808705081}
