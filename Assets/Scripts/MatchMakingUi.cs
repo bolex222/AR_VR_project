@@ -53,7 +53,7 @@ public class MatchMakingUi : MonoBehaviour
         pcTeamSelection.gameObject.SetActive(false);
         vrTeamSelectionCanvas.gameObject.SetActive(false);
         
-        matchMakingNetworkManager.JoinTeam(team);
+        matchMakingNetworkManager.OnAddPlayerToTeam(team);
 
         if (!PhotonNetwork.IsMasterClient) return;
 

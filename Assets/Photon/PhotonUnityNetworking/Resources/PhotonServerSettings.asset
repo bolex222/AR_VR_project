@@ -52,6 +52,11 @@ MonoBehaviour:
   - ShootGun
   - PlayerVisibilityVR
   - IncrementPlayerInTeam
+  - JoinTeam
+  - EnterCollistion
+  - SetSpawnPointFromJson
+  - AssetTeamToPlayerAndPioupiou
+  - setUpTeam
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

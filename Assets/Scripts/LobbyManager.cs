@@ -134,7 +134,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             {
                 // Use local server OnPremise
                 // See this thread for more details https://forum.photonengine.com/discussion/comment/43218/#Comment_43218
-                Debug.LogFormat("Use OnPremise Server - Connect to {0}:{1}", ip, port);
                 PhotonNetwork.PhotonServerSettings.AppSettings.UseNameServer = false;
                 PhotonNetwork.PhotonServerSettings.AppSettings.Server = ip;
                 PhotonNetwork.PhotonServerSettings.AppSettings.Port = port;
@@ -145,8 +144,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             else
             {
                 // Used for cloud Server.
-                Debug.LogFormat("Connect Cloud server to App Id {0}",
-                    PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime.Substring(0, 10) + "...");
                 PhotonNetwork.GameVersion = gameVersion;
                 PhotonNetwork.PhotonServerSettings.AppSettings.UseNameServer = true;
                 //PhotonNetwork.ConnectUsingSettings();

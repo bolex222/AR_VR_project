@@ -1,14 +1,10 @@
-using System;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Interfaces;
-using UnityEngine.Events;
 using UnityEngine.UIElements;
-using Cursor = UnityEngine.UIElements.Cursor;
 
 public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
 {
@@ -21,13 +17,6 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
     [SerializeField] private UIDocument startButtonUi;
     public int quantityOfPlayerAlreadyInTeam;
 
-
-    /*[Tooltip("The prefab to use for representing the user on a PC. Must be in Resources folder")]
-    public GameObject playerPrefabPC;
-
-    [Tooltip("The prefab to use for representing the user in VR. Must be in Resources folder")]
-    public GameObject playerPrefabVR;*/
-
     #region Photon Callbacks
 
     /// <summary>
@@ -35,28 +24,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnLeftRoom()
     {
-        // TODO: load the Lobby Scene
         SceneManager.LoadScene("Lobby");
-    }
-
-    /// <summary>
-    /// Called when Other Player enters the room and Only other players
-    /// </summary>
-    /// <param name="other"></param>
-    public override void OnPlayerEnteredRoom(Player other)
-    {
-        Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
-        // TODO: 
-    }
-
-    /// <summary>
-    /// Called when Other Player leaves the room and Only other players
-    /// </summary>
-    /// <param name="other"></param>
-    public override void OnPlayerLeftRoom(Player other)
-    {
-        Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); // seen when other disconnects
-        // TODO: 
     }
 
     #endregion
@@ -70,13 +38,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
     /// </summary>
     public void LeaveRoom()
     {
-        // TODO: 
         PhotonNetwork.LeaveRoom();
-    }
-
-    private void updatePlayerNumberUI()
-    {
-        // TODO: Update the playerNumberUI
     }
 
     void Start()
@@ -94,7 +56,6 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            // TODO: Instantiate the prefab representing my own avatar only if it is UserMe
             if (UserManager.UserMeInstance == null)
             {
                 //Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
@@ -102,8 +63,7 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
                 Vector3 initialPos = UserDeviceManager.GetDeviceUsed() == UserDeviceType.HTC
                     ? new Vector3(0f, 1f, 0f)
                     : new Vector3(0f, 5f, 0f);
-                GameObject gm = PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, initialPos, Quaternion.identity, 0);
-                // Debug.Log($"Player id by photon : {PhotonNetwork}");
+                PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, initialPos, Quaternion.identity, 0);
             }
             else
             {
@@ -112,31 +72,34 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
-    private void Update()
+    // private void Update()
+    // {
+    //     if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+    //     {
+    //         // Code to leave the room by pressing CTRL + the Leave button
+    //         if (Input.GetButtonUp("Leave"))
+    //         {
+    //             LeaveRoom();
+    //         }
+    //     }
+    // }
+
+    public void OnAddPlayerToTeam(AllGenericTypes.Team team)
     {
-        print($"selctteam: {quantityOfPlayerAlreadyInTeam}");
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-        {
-            // Code to leave the room by pressing CTRL + the Leave button
-            if (Input.GetButtonUp("Leave"))
-            {
-                Debug.Log("Leave event");
-                LeaveRoom();
-            }
-        }
+        // photonView.RPC("JoinTeam", RpcTarget.AllViaServer, team);
+        JoinTeam(team);
     }
 
-    public void JoinTeam(AllGenericTypes.Team team)
+    // [PunRPC]
+    private void JoinTeam(AllGenericTypes.Team team)
     {
         if (team == AllGenericTypes.Team.TeamA && !playersTeamA.Contains(PhotonNetwork.LocalPlayer))
         {
-            Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in A");
             playersTeamA.Add(PhotonNetwork.LocalPlayer);
             quantityOfPlayerAlreadyInTeam++;
         }
         else if (team == AllGenericTypes.Team.TeamB && !playersTeamB.Contains(PhotonNetwork.LocalPlayer))
         {
-            Debug.Log("Player" + PhotonNetwork.LocalPlayer.NickName + "added in B");
             playersTeamB.Add(PhotonNetwork.LocalPlayer);
         }
         photonView.RPC("IncrementPlayerInTeam", RpcTarget.All);
@@ -145,8 +108,6 @@ public class MatchMakingNetworkManager : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        //Debug.Log("game start");
-        //TODO
         SceneManager.LoadScene("map");
     }
 

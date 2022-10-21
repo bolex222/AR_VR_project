@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         switch (gameMode)
         {
             case GameModeOptions.DeathMatch:
-                Debug.Log("game is a deathMatch");
                 break;
             case GameModeOptions.CaptureTheFlag:
                 _game = gameObject.GetComponent<CaptureTheFlag>();
@@ -43,15 +42,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void SetupGame()
     {
         Spawn();
+        // photonView.RPC("Spawn", RpcTarget.AllViaServer);
         _game.SetUpGame();
         _game.GameStart();
     }
 
-    
+
+    // [PunRPC]
     public void Spawn()
     {
         
         // INSTANTIATE THE RIGHT PREFAB DEPENDING ON THE USER TEAM AND DEVICE
+        
+        Debug.Log( "current player in A? : "+ MatchMakingNetworkManager.playersTeamA.Contains(PhotonNetwork.LocalPlayer));
+        Debug.Log( "current player in B? : "+ MatchMakingNetworkManager.playersTeamB.Contains(PhotonNetwork.LocalPlayer));
         
         AllGenericTypes.Team team = MatchMakingNetworkManager.playersTeamA.Contains(PhotonNetwork.LocalPlayer)
             ? AllGenericTypes.Team.TeamA
@@ -89,8 +93,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             SocketInteractor pioupiouSocketInteractor = pioupiou.GetComponentInChildren<SocketInteractor>();
             Pioupiou pioupiouScript = pioupiou.GetComponent<Pioupiou>();
             XRSocketInteractor playerSocket = player.GetComponentInChildren<XRSocketInteractor>();
-            pioupiouScript.playerTeam = team;
-
+            pioupiouScript.TeamSetUp(team);
+            
             if (pioupiouSocketInteractor != null && playerSocket != null)
             {
                 pioupiouSocketInteractor.xrSocketInteractor = playerSocket;
@@ -98,4 +102,5 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
     }
+
 }

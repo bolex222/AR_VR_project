@@ -6,6 +6,7 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 using Photon.Pun;
+using Shooter;
 
 public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
 {
@@ -13,13 +14,17 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
     [SerializeField] private float normalSensitivity;
     [SerializeField] private float aimSensitivity;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
-    [SerializeField] private Transform pfBulletProjectile;
+    [SerializeField] private BulletProjectile pfBulletProjectile;
+    [SerializeField] private Material pfBulletProjectileMaterial;
     [SerializeField] private Transform spawnBulletPosition;
     [SerializeField] private PlayerTeam playerTeam;
+
 
     public ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
+    public AudioSource Shoot;
+    public AudioClip ShootSound;
 
     private float gunHeat;
 
@@ -28,6 +33,11 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
         thirdPersonController = GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void Update()
@@ -78,11 +88,38 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
         if (gunHeat <= 0)
         {
             gunHeat = GameDataManager.Instance.data.DelayShot;  // this is the interval between firing.
-            Transform bullet = Instantiate( pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up));
+            Debug.Log("TPS player instantiate ONLY ONE shitty bullet");
+
+            
+            
+
+            BulletProjectile bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimRotateDirection, Vector3.up)) as BulletProjectile;
+
+            if (playerTeam.team == Interfaces.AllGenericTypes.Team.TeamA)
+            {
+                ColorUtility.TryParseHtmlString(GameDataManager.Instance.data.ColorShotKMS, out Color bulletColor);
+                pfBulletProjectileMaterial.color = bulletColor;
+                bullet.pfBulletProjectileTrail.startColor = bulletColor;
+                pfBulletProjectileMaterial.SetColor("_EmissionColor", bulletColor);
+            }
+            else
+            {
+                ColorUtility.TryParseHtmlString(GameDataManager.Instance.data.ColorShotVirus, out Color bulletColor);
+                pfBulletProjectileMaterial.color = bulletColor;
+                bullet.pfBulletProjectileTrail.startColor = bulletColor;
+                pfBulletProjectileMaterial.SetColor("_EmissionColor", bulletColor);
+            }
             BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
             bulletScript.teamToAvoid = playerTeam.team;
+            Play(ShootSound);
 
         }
         starterAssetsInputs.fire = false;
+    }
+    
+    public void Play(AudioClip clip)
+    {
+        Shoot.clip = clip;
+        Shoot.Play();
     }
 }

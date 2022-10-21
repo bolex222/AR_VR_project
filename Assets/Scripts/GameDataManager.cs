@@ -49,7 +49,6 @@ public class GameDataManager : MonoBehaviour
             {
                 getData(jsonPath);
                 SceneManager.LoadScene("Lobby");
-                Debug.Log("Data loaded");
             }
         }
         catch (IOException e)

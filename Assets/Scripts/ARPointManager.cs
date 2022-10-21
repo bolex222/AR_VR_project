@@ -17,9 +17,10 @@ public class ARPointManager: MonoBehaviour
     [Serializable]
     public class ARPoints
     {
-        public Point[] spawnPoints;
         public Point[] captureZones;
         public Point[] throwable;
+        public Point[] spawnPointsTeamA;
+        public Point[] spawnPointsTeamB;
     }
 
     public ARPoints aRPoints;
@@ -34,12 +35,9 @@ public class ARPointManager: MonoBehaviour
         try
         {
             if (File.Exists(jsonPath))
-                Debug.Log("here");
             {
                 string jsonLevelContent = File.ReadAllText(jsonPath);
-                Debug.Log(jsonLevelContent);
                 ARPoints values = JsonUtility.FromJson<ARPoints>(jsonLevelContent);
-                Debug.Log(values);
                 aRPoints = values;
             }
         }

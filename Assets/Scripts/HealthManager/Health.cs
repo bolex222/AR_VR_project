@@ -5,15 +5,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
+using TMPro;
 
 public class Health : MonoBehaviourPunCallbacks, IPunObservable
 {
-    public float maxHealth;
-    public float currentHealth;
+    private float maxHealth;
+    private float currentHealth;
+    public GameObject AudioManager;
+    public AudioSource PlayerDeath;
+    public AudioClip playerDeathSound;
+    public AudioClip playerSpawnSound;
+    public AudioClip playerHurtSound;
 
     [SerializeField] private Transform player;
     [SerializeField] private GameObject deathScreen;
-    
+    [SerializeField] private TextMeshProUGUI deathScreenText;
+
+
     public HealthBar healthBar;
 
     private float respawnTime;
@@ -41,13 +49,22 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (!photonView.IsMine) return;
         
+        Play(playerHurtSound);
+        
         //healthBar.SetHealth(currentHealth);
         currentHealth -= damage;
 
         if (currentHealth <= 0f)
         {
             Die();
+            Play(playerDeathSound);
         }
+    }
+    
+    public void Play(AudioClip clip)
+    {
+        PlayerDeath.clip = clip;
+        PlayerDeath.Play();
     }
 
     [PunRPC]
@@ -111,8 +128,11 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         player.transform.position = spawn.position;
         player.transform.rotation = spawn.rotation;
         Physics.SyncTransforms();
+        if (photonView.IsMine)
+        {
+            Play(playerSpawnSound);
+        }
 
-        Debug.Log("Respawned to: " + spawn.position);
     }
 
     private void RespawnTimer()
@@ -122,6 +142,8 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
             if (_timeLeft > 0)
             {
                 _timeLeft -= Time.deltaTime;
+
+                deathScreenText.text = "YOU ARE DEAD... " + (int)_timeLeft;
             }
             else
             {

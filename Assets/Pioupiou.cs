@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Interfaces;
 using Photon.Pun;
+using Shooter;
 using UnityEngine;
 
 public class Pioupiou : MonoBehaviourPunCallbacks
@@ -11,8 +12,15 @@ public class Pioupiou : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject pfBulletProjectile;
     [SerializeField] private Transform bulletOrigin;
     public AllGenericTypes.Team playerTeam;
+    public AudioSource Shoot;
+    public AudioClip ShootSound;
 
     private float _gunHeat;
+
+    private void Start()
+    {
+        Debug.Log($"pioupiou start with team {playerTeam}");
+    }
 
     public void Update()
     {
@@ -31,14 +39,31 @@ public class Pioupiou : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ShootGun()
     {
-        Debug.Log("here");
         if (_gunHeat <= 0)
         {
             Quaternion aimRotateDirection = pioupiouMesh.transform.rotation.normalized;
             _gunHeat = GameDataManager.Instance.data.DelayShot; // this is the interval between firing.
+            Debug.Log("instantiate bullet by piou piou");
+            Play(ShootSound);
             GameObject bullet = Instantiate(pfBulletProjectile, bulletOrigin.position, aimRotateDirection);
             BulletProjectile bulletScript = bullet.GetComponent<BulletProjectile>();
             bulletScript.teamToAvoid = playerTeam;
         }
+    }
+    
+    public void TeamSetUp(AllGenericTypes.Team team)
+    {
+        photonView.RPC("setUpTeam", RpcTarget.AllViaServer, (int)team);
+    }
+
+    [PunRPC]
+    private void setUpTeam(int team)
+    {
+        playerTeam = (AllGenericTypes.Team)team;
+    }
+    public void Play(AudioClip clip)
+    {
+        Shoot.clip = clip;
+        Shoot.Play();
     }
 }

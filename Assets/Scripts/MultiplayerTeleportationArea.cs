@@ -11,10 +11,6 @@ public class MultiplayerTeleportationArea : BaseTeleportationInteractable
     protected override bool GenerateTeleportRequest(IXRInteractor interactor, RaycastHit raycastHit, ref TeleportRequest teleportRequest)
     {
         
-        Debug.Log(teleportRequest);
-        Debug.Log(interactor);
-        Debug.Log(raycastHit);
-
         if (raycastHit.collider == null)
             return false;
 
