@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using TMPro;
-using UnityEditor.PackageManager;
 
 public class Health : MonoBehaviourPunCallbacks, IPunObservable
 {
