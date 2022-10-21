@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using TMPro;
+using UnityEditor.PackageManager;
 
 public class Health : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -48,23 +49,33 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
     public void TakeDamage(float damage)
     {
         if (!photonView.IsMine) return;
-        
-        Play(playerHurtSound);
-        
+
+
         //healthBar.SetHealth(currentHealth);
         currentHealth -= damage;
 
         if (currentHealth <= 0f)
         {
             Die();
-            Play(playerDeathSound);
+        }
+
+        try
+        {
+            Play(playerHurtSound);
+            if (currentHealth <= 0f)
+            {
+                Play(playerDeathSound);
+            }
+        }
+        finally
+        {
         }
     }
-    
+
     public void Play(AudioClip clip)
     {
-        PlayerDeath.clip = clip;
-        PlayerDeath.Play();
+        // PlayerDeath.clip = clip;
+        // PlayerDeath.Play();
     }
 
     [PunRPC]
@@ -77,13 +88,13 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     private void PlayerVisibility(bool state)
     {
-        gameObject.GetComponent<BasicRigidBodyPush>().enabled = state;//collider rigibody
+        gameObject.GetComponent<BasicRigidBodyPush>().enabled = state; //collider rigibody
         gameObject.GetComponent<StarterAssets.StarterAssetsInputs>().enabled = state;
         gameObject.GetComponent<Collider>().enabled = state;
         gameObject.GetComponent<ThirdPersonShooterController>().enabled = state;
         healthBar.gameObject.SetActive(state);
         transform.GetChild(1).gameObject.SetActive(state); // hide skeleton
-        transform.GetChild(2).gameObject.SetActive(state);// hide gun 
+        transform.GetChild(2).gameObject.SetActive(state); // hide gun 
     }
 
     [PunRPC]
@@ -98,7 +109,7 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
 
     public void Die()
     {
-        if(UserDeviceManager.GetDeviceUsed() == UserDeviceType.PC)
+        if (UserDeviceManager.GetDeviceUsed() == UserDeviceType.PC)
         {
             photonView.RPC("PlayerVisibility", RpcTarget.AllViaServer, false);
         }
@@ -115,24 +126,25 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    
+
     private void GetSpawn()
     {
         AllGenericTypes.Team team = MatchMakingNetworkManager.playersTeamA.Contains(PhotonNetwork.LocalPlayer)
-                   ? AllGenericTypes.Team.TeamA
-                   : AllGenericTypes.Team.TeamB;
+            ? AllGenericTypes.Team.TeamA
+            : AllGenericTypes.Team.TeamB;
 
         Transform spawn =
-        team == AllGenericTypes.Team.TeamA ? SpawnerManager.instance.GetTeamSpawn(0) : SpawnerManager.instance.GetTeamSpawn(1);
+            team == AllGenericTypes.Team.TeamA
+                ? SpawnerManager.instance.GetTeamSpawn(0)
+                : SpawnerManager.instance.GetTeamSpawn(1);
 
         player.transform.position = spawn.position;
         player.transform.rotation = spawn.rotation;
         Physics.SyncTransforms();
-        if (photonView.IsMine)
-        {
-            Play(playerSpawnSound);
-        }
-
+        // if (photonView.IsMine)
+        // {
+        //     Play(playerSpawnSound);
+        // }
     }
 
     private void RespawnTimer()
@@ -162,7 +174,6 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
 
                 deathScreen.gameObject.SetActive(false);
                 _timeLeft = respawnTime;
-                
             }
         }
     }
@@ -178,7 +189,6 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
         {
             currentHealth = (float)stream.ReceiveNext();
             healthBar.SetHealth(currentHealth);
-
         }
     }
 }
